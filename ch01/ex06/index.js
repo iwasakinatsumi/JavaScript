@@ -24,3 +24,15 @@ function fib2(n) {
 }
 
 console.log(fib2(75));
+
+cache2 = { 1: 1, 2: 1 };
+function fib3(n) {
+  if (n < 3) {
+    return cache2[n];
+  } else {
+    cache2[n - 1] = fib3(n - 1);
+    return cache2[n - 1] + cache2[n - 2];
+  }
+}
+
+console.log(fib3(75));
