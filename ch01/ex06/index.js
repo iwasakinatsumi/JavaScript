@@ -9,6 +9,18 @@ function fib(n) {
     return fib(n - 1) + fib(n - 2);
   }
 }
-console.log(fib(5));
 
-//console.log(fib(75));
+console.log(fib(5));
+console.log(fib(75));
+
+cache = { 0: 0, 1: 1 };
+function fib2(n) {
+  if (n <= 1) {
+    return cache[n];
+  } else {
+    cache[n - 1] = fib2(n - 1);
+    return cache[n - 1] + cache[n - 2];
+  }
+}
+
+console.log(fib2(75));
