@@ -5,22 +5,22 @@ let num2 = { realNumber: 1, imaginaryNumber: 2 };
 // num1:3+4i,num2:1+2i
 // add:4+6i
 // sub:2+2i
-// mul:-3+10i
-// div:
+// mul:-5+10i
+// div:(11-2i)/5
 
-function add(num1, num2) {
+export function add(num1, num2) {
   let answerAddReal = num1.realNumber + num2.realNumber;
   let answerAddImaginary = num1.imaginaryNumber + num2.imaginaryNumber;
   return answerAddReal + "+" + answerAddImaginary + "i";
 }
 
-function sub(num1, num2) {
+export function sub(num1, num2) {
   let answerSubReal = num1.realNumber - num2.realNumber;
   let answerSubImaginary = num1.imaginaryNumber - num2.imaginaryNumber;
   return answerSubReal + "+" + answerSubImaginary + "i";
 }
 
-function mul(num1, num2) {
+export function mul(num1, num2) {
   let answerMulReal =
     num1.realNumber * num2.realNumber -
     num1.imaginaryNumber * num2.imaginaryNumber;
@@ -30,14 +30,32 @@ function mul(num1, num2) {
   return answerMulReal + "+" + answerMulImaginary + "i";
 }
 
-function div(num1, num2) {
+export function div(num1, num2) {
   //共役な複素数の表現方法？
-  let answerSubReal = num1.realNumber - num2.realNumber;
-  let answerSubImaginary = num1.imaginaryNumber - num2.imaginaryNumber;
-  return answerSubReal + "+" + answerSubImaginary + "i";
+  //分母の共役な複素数を分母、分子にかける
+
+  let conNum2 = {
+    //分母になるnum2の共役な複素数を設定する
+    realNumber: num2.realNumber,
+    imaginaryNumber: num2.imaginaryNumber,
+  };
+  //分母の計算
+  let deno =
+    num2.realNumber * conNum2.realNumber -
+    num2.imaginaryNumber * conNum2.imaginaryNumber;
+  //分子の計算
+  let moleReal =
+    num1.realNumber * conNum2.realNumber -
+    num1.imaginaryNumber * conNum2.imaginaryNumber;
+  let moleImaginary =
+    num1.realNumber * conNum2.imaginaryNumber +
+    num2.realNumber * conNum2.imaginaryNumber;
+
+  //値が負の時、これだと「+-2」のようになるのでイマイチ
+  return moleReal / deno + "+" + moleImaginary / deno + "i";
 }
 
-console.log(add(num1, num2));
-console.log(sub(num1, num2));
-console.log(mul(num1, num2));
-console.log(div(num1, num2));
+// console.log(add(num1, num2));
+// console.log(sub(num1, num2));
+// console.log(mul(num1, num2));
+// console.log(div(num1, num2));

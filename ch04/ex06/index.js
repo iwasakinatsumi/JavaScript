@@ -42,8 +42,8 @@ function resize2(params) {
   let maxWidth = 600;
   let maxHeight = 480;
 
-  (params ? params : params.maxWidth) ?? (maxWidth = params.maxWidth);
-  (params ? params : params.maxHeight) ?? (maxHeight = params.maxHeight);
+  maxWidth = params.maxWidth ?? maxWidth;
+  maxHeight = params.maxHeight ?? maxheight;
 
   console.log({ maxWidth, maxHeight });
 }

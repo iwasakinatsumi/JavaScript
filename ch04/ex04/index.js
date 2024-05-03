@@ -5,7 +5,7 @@ export function bitCount(num) {
   let c = 0;
   for (let i = 0; i < 32; i++) {
     if (num & 0x1) {
-      //↑の意味が分からない
+      //下位1ビットをマスキングしていって1ならcでカウントする
       //https://gorogoronyan.web.fc2.com/htmlsample/src/TestJS_bitcount1.html
       c++;
     }
@@ -13,6 +13,3 @@ export function bitCount(num) {
   }
   return c;
 }
-
-console.log(bitCount(0b111));
-console.log(bitCount(0b1111111111111111111111111111111));
