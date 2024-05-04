@@ -1,4 +1,4 @@
-let num1 = { realNumber: 3, imaginaryNumber: 4 };
+let num1 = { realNumber: 3, imaginaryNumber: -4 };
 let num2 = { realNumber: 1, imaginaryNumber: 2 };
 
 // 複素数
@@ -11,13 +11,23 @@ let num2 = { realNumber: 1, imaginaryNumber: 2 };
 export function add(num1, num2) {
   let answerAddReal = num1.realNumber + num2.realNumber;
   let answerAddImaginary = num1.imaginaryNumber + num2.imaginaryNumber;
-  return answerAddReal + "+" + answerAddImaginary + "i";
+
+  if (answerAddImaginary < 0) {
+    return answerAddReal + "" + answerAddImaginary + "i";
+  } else {
+    return answerAddReal + "+" + answerAddImaginary + "i";
+  }
 }
 
 export function sub(num1, num2) {
   let answerSubReal = num1.realNumber - num2.realNumber;
   let answerSubImaginary = num1.imaginaryNumber - num2.imaginaryNumber;
-  return answerSubReal + "+" + answerSubImaginary + "i";
+
+  if (answerSubImaginary < 0) {
+    return answerSubReal + "" + answerSubImaginary + "i";
+  } else {
+    return answerSubReal + "+" + answerSubImaginary + "i";
+  }
 }
 
 export function mul(num1, num2) {
@@ -27,7 +37,12 @@ export function mul(num1, num2) {
   let answerMulImaginary =
     num1.realNumber * num2.imaginaryNumber +
     num2.realNumber * num1.imaginaryNumber;
-  return answerMulReal + "+" + answerMulImaginary + "i";
+
+  if (answerMulImaginary < 0) {
+    return answerMulReal + "" + answerMulImaginary + "i";
+  } else {
+    return answerMulReal + "+" + answerMulImaginary + "i";
+  }
 }
 
 export function div(num1, num2) {
@@ -52,10 +67,15 @@ export function div(num1, num2) {
     num2.realNumber * conNum2.imaginaryNumber;
 
   //値が負の時、これだと「+-2」のようになるのでイマイチ
-  return moleReal / deno + "+" + moleImaginary / deno + "i";
+  //if文で分岐しなくても良い方法？
+  if (moleImaginary < 0) {
+    return moleReal / deno + "" + moleImaginary / deno + "i";
+  } else {
+    return moleReal / deno + "+" + moleImaginary / deno + "i";
+  }
 }
 
-// console.log(add(num1, num2));
+//console.log(add(num1, num2));
 // console.log(sub(num1, num2));
 // console.log(mul(num1, num2));
 // console.log(div(num1, num2));

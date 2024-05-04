@@ -1,6 +1,6 @@
 //フィボナッチ数列10項{1,1,2,3,5,8,13,21,34,55}
 
-function fibWhile() {
+export function fibWhile() {
   let array = [];
   array[0] = 1;
   array[1] = 1;
@@ -12,7 +12,7 @@ function fibWhile() {
   return array;
 }
 
-function fibDoWhile() {
+export function fibDoWhile() {
   let array = [];
   array[0] = 1;
   array[1] = 1;
@@ -23,7 +23,7 @@ function fibDoWhile() {
   return array;
 }
 
-function fibFor() {
+export function fibFor() {
   let array = [];
   array[0] = 1;
   array[1] = 1;
@@ -33,6 +33,6 @@ function fibFor() {
   return array;
 }
 
-console.log(fibWhile());
-console.log(fibDoWhile());
-console.log(fibFor());
+// console.log(fibWhile());
+// console.log(fibDoWhile());
+// console.log(fibFor());

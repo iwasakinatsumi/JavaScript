@@ -1,4 +1,4 @@
-function parseJSON(arg) {
+export function parseJSON(arg) {
   try {
     const obj = JSON.parse(arg);
     return { success: true, data: obj };
@@ -8,6 +8,6 @@ function parseJSON(arg) {
 }
 
 //成功パターン
-console.log(parseJSON('{"result":true, "count":42}'));
+//console.log(parseJSON('{"result":true, "count":42}'));
 //失敗パターン
-console.log(parseJSON("[1, 2, 3, 4, ]"));
+//console.log(parseJSON("[1, 2, 3, 4, ]"));

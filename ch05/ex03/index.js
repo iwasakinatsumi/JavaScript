@@ -1,4 +1,4 @@
-function isHoliday(date) {
+export function isHoliday1(date) {
   if ((date == "土") | (date == "日")) {
     return true;
   } else {
@@ -8,10 +8,10 @@ function isHoliday(date) {
   //数字とか記号とか月-日以外が入力されたとき？
 }
 
-//console.log(isHoliday("土"));
-//console.log(isHoliday("月"));
+//console.log(isHoliday1("土"));
+//console.log(isHoliday1("月"));
 
-function isHoliday2(date) {
+export function isHoliday2(date) {
   switch (date) {
     case "土":
       return true;
@@ -22,5 +22,5 @@ function isHoliday2(date) {
   }
 }
 
-console.log(isHoliday2("土"));
-console.log(isHoliday2("月"));
+// console.log(isHoliday2("土"));
+// console.log(isHoliday2("月"));
