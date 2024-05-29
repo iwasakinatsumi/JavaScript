@@ -48,7 +48,23 @@ const data = [
 
 //math->chemistry->geographyの順にソート
 let sortData;
-sortData = data.sort(function () {
-  return a - b;
+sortData = data.sort(function (a, b) {
+  if (a.math < b.math) {
+    return 1;
+  } else if (a.math == b.math) {
+    if (a.chemistry < b.chemistry) {
+      return 1;
+    } else if (a.chemistry == b.chemistry) {
+      if (a.geography < b.geography) {
+        return 1;
+      } else {
+        return -1;
+      }
+    } else {
+      return -1;
+    }
+  } else {
+    return -1;
+  }
 });
 console.log(sortData);
