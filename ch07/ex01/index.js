@@ -17,15 +17,20 @@ let matrix2 = [
 ];
 
 //行列の加算
-export function addMatrix(matrix1, matrix2) {
-  let addAnswer = [[]];
-  for (var i = 0; i < 2; i++) {
-    for (var j = 0; j < 2; j++) {
+export function add(matrix1, matrix2) {
+  var res = [];
+  var row1 = matrix1.length;
+  var row2 = matrix2.length;
+  var col1 = matrix1[0].length;
+  var col2 = matrix2[0].length;
+  for (var i = 0; i < row1; i++) {
+    res.push([]);
+    for (var j = 0; j < col2; j++) {
       //2次元配列の設定？
-      addAnswer[[i][j]] = matrix1[i][j] + matrix2[i][j];
+      res[i][j] = matrix1[i][j] + matrix2[i][j];
     }
   }
-  console.log(addAnswer);
+  return res;
 }
 
 //行列の乗算
@@ -34,16 +39,24 @@ export function addMatrix(matrix1, matrix2) {
 // answer[1][0] = matrix1[0][1] * matrix2[0][0] + matrix1[1][1] * matrix2[0][1];
 // answer[1][1] = matrix1[0][1] * matrix2[1][0] + matrix1[1][1] * matrix2[1][1];
 
-export function multimatrix(matrix1, matrix2) {
-  let multiAnswer = [];
-  for (var i = 0; i < 2; i++) {
-    for (var j = 1; j < 0; j--) {
-      multiAnswer[[i][j]] =
-        matrix1[i][j] * matrix2[j][i] + matrix[j][i] * matrix2[i][j];
+export function dot(matrix1, matrix2) {
+  var res = [];
+  var row1 = matrix1.length;
+  var row2 = matrix2.length;
+  var col1 = matrix1[0].length;
+  var col2 = matrix2[0].length;
+
+  for (var i1 = 0; i1 < row1; i1++) {
+    res.push([]);
+    for (var i2 = 0; i2 < col2; i2++) {
+      res[i1].push(0);
+      for (var i3 = 0; i3 < col1; i3++) {
+        res[i1][i2] += matrix1[i1][i3] * matrix2[i3][i2];
+      }
     }
   }
-  console.log(multiAnswer);
+  return res;
 }
 
-addMatrix(matrix1, matrix2);
-multimatrix(matrix1, matrix2);
+add(matrix1, matrix2);
+dot(matrix1, matrix2);
