@@ -26,7 +26,6 @@ export function add(matrix1, matrix2) {
   for (var i = 0; i < row1; i++) {
     res.push([]);
     for (var j = 0; j < col2; j++) {
-      //2次元配列の設定？
       res[i][j] = matrix1[i][j] + matrix2[i][j];
     }
   }
