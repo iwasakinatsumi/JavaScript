@@ -1,3 +1,8 @@
-// オブジェクトリテラルで独自プロパティを持つオブジェクトを定義し、Object.create を使用してその継承オブジェクトを生成しなさい。
-// Object.getPrototypeOf()
-// を利用して、生成した継承オブジェクトのプロトタイプがObject.create で渡したオブジェクトになっていることを確認しなさい。
+let obj = {
+  title: "星の王子様",
+  author: "サン・テグジュペリ",
+};
+
+let newObj = Object.create(obj);
+
+console.log(Object.getPrototypeOf(newObj));

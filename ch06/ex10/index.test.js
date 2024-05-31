@@ -31,4 +31,6 @@ const obj = {
 
 //ここにコードを書く
 
+const answer = { ...obj };
+
 expect(answer).toEqual(obj);

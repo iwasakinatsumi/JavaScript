@@ -10,11 +10,11 @@ const obj = {
 };
 
 //ここに1行のコードを書く
-mock();
+obj.sum();
 
 obj.x = 1;
 obj.y = 2;
 
-//expect(JSON.stringify(obj).toBe(`{"x":1,"y":2,"sum":3}`));
+expect(JSON.stringify(obj).toBe(`{"x":1,"y":2,"sum":3}`));
 //expect(JSON.stringify(obj).toBe(`{"x":1,"y":2}`));
 expect(mock).toHaveBeenCalled();
