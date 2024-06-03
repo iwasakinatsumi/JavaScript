@@ -1,17 +1,27 @@
-reduce((x, y) => sum(x, y), 0);
+const array = [1, 2, 3, 4, 5];
+const isBelowThreshold = 40;
 
-export function sum(x, y) {
-  return x + y;
+export function sum(array) {
+  return array.reduce((prev, current) => prev + current, 0);
 }
 
-export function join(x, y) {
-  return x.toString() + y.toString();
+export function join(array) {
+  return array.reduce((prev, current) => prev + current, "");
 }
 
-export function reverse() {
-  return y.toString() + x.toString();
+export function reverse(array) {
+  return array.reduce((prev, current) => current + prev, "");
 }
 
-export function every() {}
+//引数の値がすべて閾値以下ならtrue
+export function every(array, isBelowThreshold) {
+  return array.reduce((current) => current < isBelowThreshold, "");
+}
 
-export function some() {}
+//引数の値のうちどれかが閾値以下ならtrue
+//everyとの違い？
+export function some(array, isBelowThreshold) {
+  return array.reduce((current) => current < isBelowThreshold, "");
+}
+
+console.log(some(array, isBelowThreshold));

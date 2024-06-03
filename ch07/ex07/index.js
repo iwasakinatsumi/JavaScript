@@ -1,3 +1,4 @@
+//挿入ソート
 function sort(
   array,
   compare = (lhs, rhs) => (lhs < rhs ? -1 : lhs > rhs ? +1 : 0)
@@ -17,3 +18,20 @@ function sort(
   }
   return array;
 }
+
+//バブルソート
+export function bubbleSort(array) {
+  for (let i = 0; i < array.length - 1; i++) {
+    for (let j = array.length - 1; j > i; j--) {
+      //後ろから値を比較していく
+      if (array[j] < array[j - 1]) {
+        let tmp = array[j];
+        array[j] = array[j - 1];
+        array[j - 1] = tmp;
+      }
+    }
+  }
+  return array;
+}
+
+console.log(bubbleSort([5, 3, 4, 1, 2]));

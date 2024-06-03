@@ -11,14 +11,14 @@ let matrix2 = [
 ];
 
 test("add", () => {
-  expect(add(matrix1, matrix2)).arrayContaining([
+  expect(add(matrix1, matrix2)).toEqual([
     [3, 3],
     [3, 3],
   ]);
 });
 
 test("dot", () => {
-  expect(dot(matrix1, matrix2)).arrayContaining([
+  expect(dot(matrix1, matrix2)).toEqual([
     [4, 4],
     [4, 4],
   ]);

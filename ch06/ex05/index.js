@@ -5,17 +5,26 @@
  * プロトタイプは列挙可のプロパティをもち、それと同名の列挙不可のプロパティをオブジェクトにもたせること
  */
 
-const personPrototype = {
-  greet() {
-    console.log("Hello!");
-  },
+//memo：https://developer.mozilla.org/ja/docs/Web/JavaScript/Enumerability_and_ownership_of_properties
+
+let obj = new Object();
+
+obj = {
+  number: 8,
+  string: "good",
 };
 
-const carl = Object.create(personPrototype);
-carl.greet(); // hello!
+//プロトタイプは列挙可のプロパティをもち、それと同名の列挙不可のプロパティをオブジェクトにもたせること
+Object.prototype.method = function () {};
 
-carl.personPrototype = 8;
-carl.personPrototype = "Hi!";
+Object.defineProperty(Object.prototype, "method", {
+  enumerable: true,
+});
 
-carl.number = 8;
-carl.string = "Good";
+Object.defineProperty(Object.prototype, "method", {
+  enumerable: false,
+});
+
+for (let prop in obj) {
+  console.log(prop);
+}
