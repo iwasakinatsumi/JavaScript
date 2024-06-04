@@ -19,3 +19,7 @@ sources 削除対象指定オブジェクト (単数または複数) — 削除�
 
 返値  
 削除先オブジェクトオブジェクトです。
+
+参考：  
+https://jp-seemore.com/web/3579/  
+https://note.com/digiholic_life/n/n3c749933a673
