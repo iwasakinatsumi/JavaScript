@@ -26,6 +26,3 @@ export function sequenceToObject(...values) {
 }
 
 console.log(sequenceToObject("a", 1, "b", 2));
-
-//prismaの型
-//https://www.prisma.io/docs/orm/prisma-client/type-safety
