@@ -8,19 +8,19 @@
 
 export function sequenceToObject(...values) {
   //引数が偶数個あるか判断する：例外発生
-  if (values.length % 2 == 0) {
-    throw error;
+  if (values.length % 2 != 0) {
+    throw new Error("Error");
   }
   //いずれかの奇数番の値がstringか判断する：例外発生
   for (let i = 0; i < values.length; i = i + 2) {
-    if (typeof values[i] == "string") {
-      throw error;
+    if (typeof values[i] != "string") {
+      throw new Error("Error");
     }
   }
 
   let obj = new Object();
   for (let i = 0; i < values.length; i = i + 2) {
-    obj.values[i] = values[i + 1];
+    obj[values[i]] = values[i + 1];
   }
   return obj;
 }

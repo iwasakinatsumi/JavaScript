@@ -12,6 +12,6 @@ const n = function (arg) {
 
 //
 const o = (arg) => {
-  console.log(arg[1]);
+  console.log(arg);
 };
 o("a", "b");
