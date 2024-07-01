@@ -15,4 +15,4 @@ class Resource {
 withResource(new Resource(), (resource) => {
   resource.doA();
   resource.doB();
-}); // 終了時に resource.close が自動で呼ばれる
+}).bind(resource.close()); // 終了時に resource.close が自動で呼ばれる

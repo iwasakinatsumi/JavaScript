@@ -2,5 +2,12 @@ Web 上に公開されているブラウザの JavaScript で名前空間とし�
 
 即時関数実行式
 
+https://developer.mozilla.org/ja/docs/Glossary/IIFE  
+定義されるとすぐに実行される関数  
+使う理由としては、スコープの汚染を防ぐため
+
+どうやって探す？？
+
 https://www.typescriptlang.org/play/?#code/C4TwDgpgBAsiBKEDOYD2A7J0C8UDeAUFFAJZICiATpapQFxTCUCuEA3EY+BAwOQnpgESugCGAG15QAPlF6jmwABZTZvdKmAAxVM3QATVXIEA3CSUMcAvjPycyVGvSgAzCVg7EAxhiGCA-AxITAIA5tYc+hBe4qKU0D6YwFDxKBhYDHCIaZjsBInBUD5RULgAFGUAlKUAfHbEJC5QZalouQB0DtS01YTExEgA7iTAXkrNrekQ7aCQvZz9RaJYxoLCYpJ0C4spEMDMIlAArAAMJ547XsvQ8ooqWzv98fuHACwnAIwXi1cr6po6PSGB6PXYvdBQd6vb79X43UzmYHbRbPA4Q97nbZWTg2CDiFZ9fqNZqzCCoJqTDqJPzJACE2FwvGClDCvGqqMOACZPjDiS1kG0sO1qRBBO1xKLQsooHUPhAjuy9mjIR8AMwwjkQ7mY4jYqyVKpsIA
 https://zenn.dev/optimind/articles/javascript-typescript-iife
+https://qiita.com/katsukii/items/cfe9fd968ba0db603b1e
