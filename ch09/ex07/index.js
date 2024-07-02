@@ -4,6 +4,7 @@
 
 class Animal {
   eat() {}
+  makesound() {}
 }
 
 class Dog extends Animal {
@@ -20,10 +21,23 @@ class Bird extends Animal {
   fly() {}
 }
 
-class Fish extends Animal {
-  swim() {}
-}
+// class Fish extends Animal {
+//   swim() {}
+// }
 
 //この例では動物として共通の"食べる"という振る舞い eat() を各動物が継承する。ここに"鳴く"という振る舞い makeSound() を追加することを考える。
 //犬、猫、鳥は鳴くので makeSound() を共通の振る舞いとして利用したいが、スーパークラスに makeSound() を追加すると Fish は不要な振る舞いを持つことになる。
 //継承のかわりに合成(composition)を用いてこの問題を回避しなさい。
+
+class Fish {
+  //継承するとmakeSound()が含まれてしまうので、
+  //必要なもの=eat()だけ、合成元のAnimalから呼び出して使う
+  constructor() {
+    this.animal = new Animal();
+  }
+
+  eat() {
+    this.animal.eat();
+  }
+  swim() {}
+}

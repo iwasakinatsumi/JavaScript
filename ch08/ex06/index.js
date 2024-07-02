@@ -5,13 +5,13 @@ const m = function (arg) {
 //m("a", "b");
 
 //
-const n = function (arg) {
-  console.log(arguments[1]);
+const n = function (...rest) {
+  console.log(rest[1]);
 };
 //n("a", "b");
 
 //
-const o = (arg) => {
-  console.log(arg);
+const o = (...rest) => {
+  console.log(rest[1]);
 };
 o("a", "b");

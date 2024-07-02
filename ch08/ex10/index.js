@@ -1,8 +1,6 @@
 function addMyCall(f) {
-    
+  let myCall;
+  f.bind(myCall);
 }
 
-const f = function () {
-  return this.a;
-};
-addMyCall(f);
+//参考：https://qiita.com/saka212/items/67415f8dbaa970487217
