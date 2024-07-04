@@ -1,9 +1,5 @@
-//superを使わずに、Mapを呼び出す
-
-class TypedMap {
+class TypedMap extends Map {
   constructor(keyType, valueType, entries) {
-    this.map = new Map();
-
     if (entries) {
       for (let [k, v] of entries) {
         if (typeof k !== keyType || typeof v !== valueType) {
@@ -12,7 +8,7 @@ class TypedMap {
       }
     }
 
-    this.map(entries); //ここでエラー(this.map is not a function)
+    super(entries);
 
     this.keyType = keyType;
     this.valuesType = valueType;
@@ -26,12 +22,6 @@ class TypedMap {
       throw new TypeError(`${value} is not of type ${this.valueType}`);
     }
 
-    //型が正しい場合、スーパークラスのset()メソッドを呼び出す
-    return this.map.set(key, value);
+    return super.set(key, value);
   }
 }
-
-//キーと値の型をチェックする
-//stirngで"Hello,World!""
-let check = new TypedMap();
-check.set(string, "Hello,World!");
