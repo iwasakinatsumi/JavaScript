@@ -7,3 +7,7 @@ costOfLength の引数の値を大きくすれば大きくする程結果が小�
 
 どうやら何かがおかしい。どうしてこのような結果になるか調べて説明しなさい。
 出典: https://mrale.ph/blog/2012/12/15/microbenchmarks-fairy-tale.html
+
+# 結果
+
+# 理由

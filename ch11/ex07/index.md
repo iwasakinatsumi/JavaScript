@@ -11,3 +11,7 @@
 "()()())"
 
 任意の長さの文字列に対して上記の判定を行う正規表現を書きなさい (書けない場合はその理由を調べて記述しなさい)。
+
+https://qiita.com/katsukii/items/1c1550f064b4686c04d4  
+https://www.javadrive.jp/regex-basic/meta/index9.html  
+エスケープしないとグループ化の判断になる。
