@@ -5,8 +5,15 @@ https://github.com/moment/luxon
 https://github.com/iamkun/dayjs
 
 # data-fns
-単位ごとにまとまっている。(年/週/日/時間/)
+
+・単位ごとにまとまっている。(年/週/日/時間/曜日)  
+・機能ごとにフォルダ分割されている
 
 # Luxon
 
+・間隔で分割されていて、時間や曜日などの分割はされていない  
+・duration/interval：間隔 違い？
+
 # Day.js
+
+・constant.js で大筋が定義、locale 内部で詳細がされていそう
