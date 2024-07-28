@@ -4,10 +4,12 @@
  */
 
 //リトルエンディアンのバイト列として引数のデータを読み込み、ビッグエンディアンのバイト列に変換して返す関数
-function littleEndian(array) {}
+function littleToBig(array) {}
 
 //ビッグエンディアンのバイト列として引数のデータを読み込み、リトルエンディアンのバイト列に変換して返す関数
-function bigaEndian(array) {}
+function bigToLittle(array) {}
 
-var array = [];
-console.log(littleEndian(array));
+var arr = new Uint32Array([21, 31]);
+console.log(littleToBig(arr));
+
+console.log(bigToLittle(arr));

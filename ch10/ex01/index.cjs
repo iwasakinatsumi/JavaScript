@@ -1,6 +1,6 @@
 //必要なモジュールへの参照を取得する
-const stats = require("stats.js");
-const BitSet = require("sets.js").BitSet;
+const stats = require("./sets.cjs");
+const BitSet = require("./sets.cjs").BitSet;
 
 //モジュールを使ってコードを記述する
 let s = new BitSet(100);

@@ -4,10 +4,31 @@
  */
 
 export function isEmailAddress(mailAddress) {
-  //＠の前に何か値がある(半角英数字+記号)
+  //空入力
   if ((mailAddress == null) | undefined) {
     return false;
   }
-  //＠の後ろは数字で252文字のみ
-  //＠の後ろは「半角英数字」+「.」+「半角英数字」の組み合わせのみ
+
+  //先頭には英数字しか来ない　[A-Za-z0-9]{1}
+  //「＠」の前には英数字しか含まれない
+  //「＠」が必ず含まれる　@{1}
+  //「＠」の後ろのドメイン名には必ず「.」が含まれる　[A-Za-z0-9_.-]+
+  //↑の後に「.」が含まれる　.
+  //末尾には記号は入らないので、英数字のみ　[A-Za-z0-9]+
+
+  //＠の直前には「.」がダメ
+  //var pattern = /^[A-Za-z0-9]{1}*[A-Za-z0-9]@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/;
+  //var pattern = /^[A-Za-z0-9]{1}*@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/;
+  if (
+    !mailAddress.match(
+      /^[A-Za-z0-9]{1}*[A-Za-z0-9]@{1}[A-Za-z0-9_.-]+.[A-Za-z0-9]+$/
+    )
+  ) {
+    return false;
+  }
+  // if (!mailAddress.match(pattern)) {
+  //   return false;
+  // }
+
+  return true;
 }
