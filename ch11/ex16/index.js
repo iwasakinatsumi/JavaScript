@@ -8,3 +8,16 @@
  * retryWithExponentialBackoffに対する呼び出しは即座に完了し、func の呼び出しは非同期に行われる
  * func が true を返す、またはmaxRetry回のリトライが失敗し終了する際、その結果(true/false)を引数として関数 callback が呼び出される
  */
+
+export function retryWithExponentialBackoff(func, maxRetry, callback) {
+  var second = 1000; //初回の待ち時間
+
+  for (var i = 0; i < maxRetry; i++) {
+    setTimeout(func(), second * (i + 1));
+  }
+}
+
+//適当な関数
+function countNumber() {}
+
+retryWithExponentialBackoff(countNumber, 3, callback);
