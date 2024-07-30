@@ -5,18 +5,39 @@
  * またslowFnは任意の実装で良い。
  */
 
+//cache関数は計算結果をキャッシュする
+//cache→slowFnを呼び出す
+//
+
 // f はオブジェクトを1つ引数に取る関数
 function cache(f) {
   // この関数を実装する
+  var result = slowFn(f);
+  var cacheValue = 0;
+  if (cacheValue == result) {
+    return cachedSlowFn();
+  } else {
+    cacheValue = result;
+  }
 }
 
 function slowFn(obj) {
   // 時間のかかる処理
-  setTimeout(() => {
-    console.log("Text 1");
-  }, 10000);
-  console.log("Text 2");
+  //バブルソート
+  const testData = generateTestData(obj.number);
+  var array = [...testData];
+  const length = array.length;
+  for (let i = 0; i < length; i++) {
+    for (let j = length - 1; j > i; j--) {
+      if (array[j] < array[j - 1]) {
+        [array[j], array[j - 1]] = [array[j - 1], array[j]];
+      }
+    }
+  }
 }
 
 // cachedSlowFnを同じ引数で複数回呼び出すと、2回目以降はキャッシュが返る
-const cachedSlowFn = cache(slowFn);
+const obj = new Object();
+obj.number = 20;
+
+const cachedSlowFn = cache(obj);

@@ -17,21 +17,23 @@
 
 //class Foo {}
 
-class TypeMap extends Map {
+export class TypeMap extends Map {
   set(key, value) {
+    if (value instanceof key) {
+    } else {
+      return new Error("Error");
+    }
     //keyがコンストラクタ関数かチェック
     console.log(typeof value);
-    console.log(value instanceof key);
-    //valueがkeyの型かどうかチェックする
   }
 }
 
-const typeMap = new TypeMap();
-typeMap.set(String, "string");
+// const typeMap = new TypeMap();
+// typeMap.set(String, "string");
 // typeMap.set(Number, 123);
 // typeMap.set(Foo, new Foo());
 // typeMap.set(Date, "not a date"); // -> Error
-// console.log(typeMap.get(String)); // -> "string"
+//console.log(typeMap.get(String)); // -> "string"
 // console.log(typeMap.get(Number)); // -> 123
 
 // let myMap = new Map();
@@ -39,3 +41,7 @@ typeMap.set(String, "string");
 // myMap.set(1, "foobar");
 // console.log(myMap.get("bar"));
 // console.log(myMap.get(1));
+
+var num1 = 12;
+console.log(num1 instanceof Number);
+console.log(typeof num1);

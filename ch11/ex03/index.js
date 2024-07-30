@@ -6,11 +6,21 @@
 //リトルエンディアンのバイト列として引数のデータを読み込み、ビッグエンディアンのバイト列に変換して返す関数
 function littleToBig(array) {
   //エンディアンの確認？元々ビッグエンディアンならそのまま返す
+  if (array.buffer[0] === 0) {
+    return new Error("変換できません");
+  } else {
+    //変換して返却する
+  }
 }
 
 //ビッグエンディアンのバイト列として引数のデータを読み込み、リトルエンディアンのバイト列に変換して返す関数
 function bigToLittle(array) {
   //エンディアンの確認？元々リトルエンディアンならそのまま返す
+  if (array.buffer[0] === 1) {
+    return new Error("変換できません");
+  } else {
+    //変換して返却する
+  }
 }
 
 var arr = new Uint32Array([21, 31]);

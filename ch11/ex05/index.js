@@ -10,7 +10,7 @@
  * https://blog.tokumaru.org/2007/12/image-xss-summary.html
  */
 
-function detectFileType(data) {
+export function detectFileType(data) {
   //PDF
   if (data[0] == "0x25") {
     return "PDF";
@@ -29,13 +29,21 @@ function detectFileType(data) {
   }
   //UNKNOWN elseでよい？
   else {
-    return "UNKOWN";
+    return "UNKNOWN";
   }
 }
 
-// var data = new Uint8Array([
-//   0x25, 0x50, 0x44, 0x46, 0x2d, 0x31, 0x2e, 0x34, 0x0a, 0x25, 0xc3, 0xa4, 0xc3,
-//   0xbc, 0xc3, 0xb6,
+var data = new Uint8Array([
+  0x25, 0x50, 0x44, 0x46, 0x2d, 0x31, 0x2e, 0x34, 0x0a, 0x25, 0xc3, 0xa4, 0xc3,
+  0xbc, 0xc3, 0xb6,
+]);
+
+console.log(data.buffer);
+console.log(new Uint8Array(data.buffer));
+console.log(detectFileType(data));
+
+// const data2 = new Uint8Array([
+//   0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a, 0x00, 0x00, 0x00,
 // ]);
 
-// console.log(detectFileType(data));
+// console.log(detectFileType(data2));
