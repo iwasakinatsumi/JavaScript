@@ -19,17 +19,20 @@
 
 class TypeMap extends Map {
   set(key, value) {
+    //keyがコンストラクタ関数かチェック
+    console.log(typeof value);
+    console.log(value instanceof key);
     //valueがkeyの型かどうかチェックする
   }
 }
 
 const typeMap = new TypeMap();
 typeMap.set(String, "string");
-typeMap.set(Number, 123);
-typeMap.set(Foo, new Foo());
-typeMap.set(Date, "not a date"); // -> Error
-console.log(typeMap.get(String)); // -> "string"
-console.log(typeMap.get(Number)); // -> 123
+// typeMap.set(Number, 123);
+// typeMap.set(Foo, new Foo());
+// typeMap.set(Date, "not a date"); // -> Error
+// console.log(typeMap.get(String)); // -> "string"
+// console.log(typeMap.get(Number)); // -> 123
 
 // let myMap = new Map();
 // myMap.set("bar", "foo");
