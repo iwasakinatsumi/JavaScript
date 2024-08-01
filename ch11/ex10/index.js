@@ -83,9 +83,16 @@ console.log(returnWeekDays("2024-07-01", "2024-07-31")); //23
 //3.
 function returnDayOfWeek(day, locale) {
   //dayの形式チェック
+
+  //localeが設定されているか？
+
+  let d = new Date(day);
+  d.toLocaleDateString(locale);
+
+  return d.getDay;
 }
 
-//console.log("2024-08-01", "ja");//木曜日
+console.log(returnDayOfWeek("2024-08-01", "ja")); //木曜日
 
 //4.
 function returnDateObject() {

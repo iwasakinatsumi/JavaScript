@@ -13,28 +13,41 @@
  * これにより、get で取得する値が key に指定したコンストラクタ関数のクラスであることを保証する。
  *  TypeScriptの場合はそのような key, value の型定義とする
  * プリミティブ値は、ラッパークラスのコンストラクタ関数で get/set 可能とする
+ * Boolean型
+ * Number型
+ * BigInt型
+ * String型
+ * Symbol型
+ * Null型
+ * Undefined型
  */
 
-//class Foo {}
+class Foo {}
 
 export class TypeMap extends Map {
+  constructor() {
+    super();
+  }
+
   set(key, value) {
+    //keyがコンストラクタ関数かチェック
     if (value instanceof key) {
+      console.log(value);
+      console.log(key);
     } else {
       return new Error("Error");
     }
-    //keyがコンストラクタ関数かチェック
-    console.log(typeof value);
   }
 }
 
-// const typeMap = new TypeMap();
-// typeMap.set(String, "string");
-// typeMap.set(Number, 123);
-// typeMap.set(Foo, new Foo());
-// typeMap.set(Date, "not a date"); // -> Error
-//console.log(typeMap.get(String)); // -> "string"
+const typeMap = new TypeMap();
+typeMap.set(String, "string");
+typeMap.set(Number, 123);
+typeMap.set(Foo, new Foo());
+//typeMap.set(Date, "not a date"); // -> Error
+// console.log(typeMap.get(String)); // -> "string"
 // console.log(typeMap.get(Number)); // -> 123
+//console.log(typeMap.get(Foo)); // -> Foo{}
 
 // let myMap = new Map();
 // myMap.set("bar", "foo");
@@ -42,6 +55,6 @@ export class TypeMap extends Map {
 // console.log(myMap.get("bar"));
 // console.log(myMap.get(1));
 
-var num1 = 12;
-console.log(num1 instanceof Number);
-console.log(typeof num1);
+// var num1 = 12;
+// console.log(num1 instanceof Number);
+// console.log(typeof num1);

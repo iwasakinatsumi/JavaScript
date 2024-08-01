@@ -16,7 +16,10 @@ function toJapaneseDateString(date) {
 // var array = ["あした", "きのう", "あさって", "おととい"];
 // console.log(sortJapanese(array)); //あさって→あした→おととい→きのう
 
+var array = ["はす", "ばす"]; //複数回やったら結果異なる可能性？異ならなかったので無視していない？
+console.log(sortJapanese(array));
+
 var date = new Date("2024-08-02");
-console.log(toJapaneseDateString(date)); //令和6年8月2日
+//console.log(toJapaneseDateString(date)); //期待：令和6年8月2日　→　結果：令和6/8/2になるので再度変換が必要そう
 
 //参考：https://qiita.com/shisama/items/cb0abb5435fac82e87d6

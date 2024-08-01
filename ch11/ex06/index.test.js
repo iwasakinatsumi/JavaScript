@@ -8,7 +8,7 @@ describe("isEmailAddress", () => {
     expect(isEmailAddress(null)).toBe(false);
     expect(isEmailAddress(undefined)).toBe(false);
     expect(isEmailAddress("foo.bar@example.com")).toBe(true);
-    //expect(isEmailAddress("foo..bar@example.com")).toBe(false); //ここで引っかかっている
+    //expect(isEmailAddress("foo..bar@example.com")).toBe(false);//「.」が連続
     expect(isEmailAddress("foo.@example.com")).toBe(false);
     expect(isEmailAddress(".foo@example.com")).toBe(false);
     // expect(
