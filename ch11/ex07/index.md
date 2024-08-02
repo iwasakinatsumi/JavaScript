@@ -15,3 +15,6 @@
 https://qiita.com/katsukii/items/1c1550f064b4686c04d4  
 https://www.javadrive.jp/regex-basic/meta/index9.html  
 エスケープしないとグループ化の判断になる。
+
+有限オートマトン  
+https://www.momoyama-usagi.com/entry/info-automaton01

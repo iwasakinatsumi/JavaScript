@@ -41,3 +41,5 @@ const obj = new Object();
 obj.number = 20;
 
 const cachedSlowFn = cache(obj);
+
+//到達不能はWeakMapを使う：

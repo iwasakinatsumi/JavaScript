@@ -58,3 +58,15 @@ typeMap.set(Foo, new Foo());
 // var num1 = 12;
 // console.log(num1 instanceof Number);
 // console.log(typeof num1);
+
+export class TypeMap {
+  constructor() {
+    this.map = new Map();
+  }
+
+  set(key, value) {}
+
+  get(key) {
+    return this.map.get(key);
+  }
+}

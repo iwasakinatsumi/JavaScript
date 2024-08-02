@@ -21,3 +21,22 @@ export function retryWithExponentialBackoff(func, maxRetry, callback) {
 function countNumber() {}
 
 retryWithExponentialBackoff(countNumber, 3, callback);
+
+/**
+ * let retryCount = 0;
+ *
+ * function retryFunc(){
+ * const result = func();
+ *
+ * if(result === true){
+ * callback(true)
+ * return;}
+ * else if(retryCount < maxRetry){
+ * setTimeOut(retryFunc,math.pow(2,retryCount)*1000);}
+ * else{
+ * callback(false)
+ * }
+ * retryCount++;
+ * }
+ * retryFunc()}
+ */

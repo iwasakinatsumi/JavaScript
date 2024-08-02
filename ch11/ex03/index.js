@@ -32,3 +32,7 @@ console.log(littleToBig(arr));
 
 // var arr = new Uint32Array([0x04030201]);
 // console.log(bigToLittle(arr));
+
+//https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView
+//new ArrayBuffer
+//new DataView　使う

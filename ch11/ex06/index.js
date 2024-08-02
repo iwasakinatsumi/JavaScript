@@ -28,3 +28,6 @@ export function isEmailAddress(mailAddress) {
     return true;
   }
 }
+
+//1回繰り返しの場合は記載しなくてよい
+//メールアドレスの仕様を調べること

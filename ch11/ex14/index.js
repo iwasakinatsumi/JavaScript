@@ -5,11 +5,11 @@
  */
 
 function sortJapanese(array) {
-  return array.sort((a, b) => a.localeCompare(b), "ja");
+  return array.sort((a, b) => a.localeCompare(b), "ja"); //Intl.Collator使う
 }
 
 function toJapaneseDateString(date) {
-  const options = { era: "long" };
+  const options = { era: "long", year: "long" };
   return new Intl.DateTimeFormat("ja-JP-u-ca-japanese", options).format(date);
 }
 
@@ -20,6 +20,6 @@ var array = ["はす", "ばす"]; //複数回やったら結果異なる可能�
 console.log(sortJapanese(array));
 
 var date = new Date("2024-08-02");
-//console.log(toJapaneseDateString(date)); //期待：令和6年8月2日　→　結果：令和6/8/2になるので再度変換が必要そう
+console.log(toJapaneseDateString(date)); //期待：令和6年8月2日　→　結果：令和6/8/2になるので再度変換が必要そう
 
 //参考：https://qiita.com/shisama/items/cb0abb5435fac82e87d6

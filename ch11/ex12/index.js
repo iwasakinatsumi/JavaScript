@@ -14,8 +14,10 @@ class CapacityError extends Error {
   }
 
   get name() {
-    return CapacityError;
+    return CapacityError; //なぜかクラス名記載している…nameなので文字列を返す
   }
 }
 
-function checkCapacity(path) {}
+function checkCapacity(path) {
+  //閾値の処理
+}
