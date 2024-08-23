@@ -26,6 +26,15 @@ function counterIter(max) {
   };
 }
 
+//1.
+//counterIter(5);
+
+//4.
+let iter = counterIter(5);
+iter.next().value;
+iter.return(3);
+iter.throw("Error");
+
 function* counterGen(max) {
   console.log("counterGen");
   try {
@@ -39,3 +48,16 @@ function* counterGen(max) {
     console.log("counterGen: finally");
   }
 }
+
+//2.
+//counterGen(5);
+
+//3.
+// let gen = counterGen(5);
+// gen.next().value;
+// gen.next().value;
+// gen.next().value;
+// gen.next().value;
+// gen.next().value;
+// gen.next().value;
+// gen.next().value;
