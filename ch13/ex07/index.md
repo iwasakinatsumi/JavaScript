@@ -20,15 +20,23 @@
 # 結果
 
 - h1
-  A->A->B->B->C->C の順で出力された
+  A->B->C の順で出力された
 
 - h2
-  X->A->B->C の順で出力された
+  X だけ出力された
 
 - h3
-  X の Error が throw された
+  X の Error が catch された
 
 - h4
-  A のあとに Y の Error が throw された
+  Y の Error だけ catch された
 
 # 理由
+
+- h1
+
+- h2
+
+- h3
+
+- h4

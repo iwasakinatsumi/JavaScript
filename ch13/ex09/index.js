@@ -45,7 +45,7 @@ async function i1() {
   log(v);
 }
 
-i1();
+//i1();
 
 async function i2() {
   const v = await Promise.all([
@@ -103,7 +103,7 @@ async function i4() {
   return p.then(() => log("COMPLETED"));
 }
 
-//i4();
+i4();
 
 async function i5() {
   // NOTE: このコードは期待通りの挙動をすると考えられるだろうか？(典型的なミス)
@@ -121,6 +121,8 @@ async function i6() {
     [0, 1, 2, 3, 4].map((i) => wait((5 - i) * 1000).then(() => log(i)))
   ).then(() => log("COMPLETED"));
 }
+
+//i6();
 
 async function i7() {
   // NOTE: i8 との比較用
@@ -149,6 +151,8 @@ async function i7() {
   log(v);
 }
 
+//i7();
+
 async function i8() {
   // NOTE: 複数の非同期処理が1つの変数に対し書き込みを行う場合、読み込みと書き込みの間に await が入るとどうなるだろうか
   let v = 0;
@@ -174,3 +178,5 @@ async function i8() {
   await Promise.all([p1(), p2()]);
   log(v);
 }
+
+//i8();
