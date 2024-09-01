@@ -14,6 +14,8 @@ function g1() {
   });
 }
 
+async function _g1() {}
+
 function g2() {
   // TODO: new Promise を使わないように書き換えなさい
   return new Promise((resolve, reject) => {

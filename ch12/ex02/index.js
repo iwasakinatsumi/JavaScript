@@ -13,19 +13,33 @@
 //   }
 // }
 
-export function fibonacciSequence() {
-  let iterator = iterable[Symbol.iterator]();
-  return {
-    [Symbol.iterator]() {
-      return this;
-    },
-    next() {
-      let v = iterator.next();
-      if (v.done) {
-        return v;
-      } else {
-        return { value: fibonacciSequence(v.value) };
+//https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Iterators_and_generators#%E3%82%A4%E3%83%86%E3%83%AC%E3%83%BC%E3%82%BF%E3%83%BC
+//1,1,2,3,5,8,13
+//引数で6を渡したときに8を返す
+
+export function fibonacciSequence(num) {
+  let array = [1, 1];
+  let iterationCount = 2;
+
+  const fibIterator = {
+    next: function () {
+      let result;
+      if (iterationCount < num) {
+        result = { value: array, done: false };
+        array[iterationCount] =
+          array[iterationCount - 2] + array[iterationCount - 1];
+        iterationCount++;
+        return result;
       }
+      return { value: array, done: true }; //計算し終わったら結果を返す
     },
   };
+  return fibIterator;
 }
+
+const it = fibonacciSequence(6);
+let result = it.next();
+while (!result.done) {
+  result = it.next();
+}
+console.log(result.value);

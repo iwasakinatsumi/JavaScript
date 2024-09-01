@@ -6,3 +6,5 @@
  * 読み込まれるファイルは UTF-8 エンコーディングされたテキストファイルであると想定して良い。
  * 出題範囲: 12.3
  */
+
+export function* readLines(filePath) {}

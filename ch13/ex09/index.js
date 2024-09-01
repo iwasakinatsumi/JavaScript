@@ -92,7 +92,7 @@ async function i3() {
   }
 }
 
-//i3();
+i3();
 
 async function i4() {
   // NOTE: i5, i6 との比較用 (直列に処理を実行したいものとする)
@@ -103,7 +103,7 @@ async function i4() {
   return p.then(() => log("COMPLETED"));
 }
 
-i4();
+//i4();
 
 async function i5() {
   // NOTE: このコードは期待通りの挙動をすると考えられるだろうか？(典型的なミス)
