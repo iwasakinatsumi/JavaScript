@@ -14,7 +14,11 @@ function g1() {
   });
 }
 
-async function _g1() {}
+async function _g1() {
+  Promise.then((value) => {
+    console.log("A");
+  });
+}
 
 function g2() {
   // TODO: new Promise を使わないように書き換えなさい

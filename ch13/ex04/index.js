@@ -12,6 +12,7 @@ fsPromises
 //それでは以下の 2 つの関数を node:fs/promises を利用し Promise を返す関数に書き換えなさい:出題範囲: 13.2
 
 function fetchFirstFileSize(path, callback) {
+  //引数で渡されたpathのディレクトリを読み込み
   fs.readdir(path, (err, files) => {
     if (err) {
       callback(err);
@@ -22,6 +23,7 @@ function fetchFirstFileSize(path, callback) {
       return;
     }
 
+    //引数で渡されたpathのシンボリックリンクをたどる
     fs.stat(join(path, files[0]), (err, stats) => {
       if (err) {
         callback(err);
@@ -30,6 +32,10 @@ function fetchFirstFileSize(path, callback) {
       callback(null, stats.size);
     });
   });
+}
+
+function _fetchFirstSize(path, callback) {
+  fsPromises.readdir(path, callback).then(() => {});
 }
 
 function fetchSumOfFileSizes(path, callback) {

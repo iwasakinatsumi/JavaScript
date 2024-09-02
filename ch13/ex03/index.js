@@ -9,6 +9,33 @@
 
 import * as fs from "node:fs";
 
+//ディレクトリの内容を読み取る
+function readdir(path, options) {
+  return new Promise((resolve, reject) => {
+    fs.readdir(path, options, (err) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve();
+    });
+  });
+}
+
+//シンボリックリンクをたどる
+function stat(path, options) {
+  return new Promise((resolve, reject) => {
+    fs.stat(path, options, (err) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve();
+    });
+  });
+}
+
+//ディレクトリを作成する
 function mkdir(path, options) {
   return new Promise((resolve, reject) => {
     fs.mkdir(path, options, (err) => {
