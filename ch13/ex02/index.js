@@ -109,6 +109,7 @@ function f4() {
     .then((value) =>
       wait(1000).then(() => {
         logB();
+        //console.log(value);
         return 100;
       })
     )
@@ -146,7 +147,7 @@ function f6() {
 //f6();
 
 function f7() {
-  // NOTE: 2つ目の wait の引数が実行される差には p は解決済み
+  // NOTE: 2つ目の wait の引数が実行される際には p は解決済み
   // (= 解決済みの Promise の then を呼び出すとどうなるか)
   const p = wait1().then(logA);
   wait2()
@@ -185,6 +186,7 @@ function f10() {
   wait1()
     .then(() => 42)
     .then(errY, (e) => log(e.message))
+    //.then(console.log("Success"), (e) => log(e.message))
     .finally(logA);
 }
 
