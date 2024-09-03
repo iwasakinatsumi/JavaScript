@@ -13,12 +13,18 @@
 
 //エラトステネスのふるい
 //https://ja.wikipedia.org/wiki/%E3%82%A8%E3%83%A9%E3%83%88%E3%82%B9%E3%83%86%E3%83%8D%E3%82%B9%E3%81%AE%E7%AF%A9
-//一般的には特定の値を入力し、その値までを計算している
-//→引数入れている
 
 export function* primes() {
   while (true) {
     try {
+      //ここで素数の計算する
+      //方針：
+      //最初の呼び出しでは2を返す：計算せずにそのまま返す？
+      //その次以降は割り算していく
+      //次の値は3なので、前の素数で割れなければ素数：2回目の呼び出しでは3が出力される
+      //次の値は4なので、前の素数(2)で割れるので素数ではない
+      //次の値は5なので、前の素数(2,3)で割れないので素数：3回目の呼び出しでは5が出力される
+      //以下続行
     } catch (e) {
       console.log(e.message);
     }
@@ -44,6 +50,17 @@ function filter(iterable, predicate) {
 }
 
 //整数列を返すジェネレーター
+function* numberGenerator() {
+  for (let i = 1; i < Infinity; i++) {
+    yield i;
+  }
+}
+
+var gen = numberGenerator();
+var num;
+num = gen.next().value;
+console.log(num);
 
 const p = primes();
-p.next();
+p.next(); //ここで返されるのは2になるはず
+p.next(); //ここで返されるのは3になるはず

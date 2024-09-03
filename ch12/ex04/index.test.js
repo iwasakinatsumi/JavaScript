@@ -1,10 +1,6 @@
 import { primes } from "./index.js";
 
 test("正常系", () => {
-  expect(primes.next()).toEqual(1);
-});
-
-test("正常系", () => {
   expect(primes.next()).toEqual(2);
 });
 

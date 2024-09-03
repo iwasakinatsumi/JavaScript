@@ -7,4 +7,19 @@
  * 出題範囲: 12.3
  */
 
-export function* readLines(filePath) {}
+export function* readLines(filePath) {
+  try {
+    fs.openSync();
+    fs.readSync();
+  } catch (e) {
+    console.log(e.message);
+  } finally {
+    fs.closeSync();
+  }
+}
+
+//↓がファイルに含まれていた場合
+//明日\nごはんに行く\n
+//出力イメージ
+//明日
+//ごはんに行く

@@ -4,7 +4,23 @@
  * また func の返り値が失敗した場合は一定時間後にリトライしなさい。一定回数以上 func が失敗した場合は retryWithExponentialBackoff の返り値を失敗させなさい。
  * 作成した関数を使えば以下のようなコードで HTTP リクエストのリトライを行える:
  */
-const resp = await retryWithExponentialBackoff(
-  () => fetch("https://example.com"),
-  5
-);
+
+//11-16
+export function retryWithExponentialBackoff(func, maxRetry, callback) {
+  let retryCount = 0;
+
+  function retryFunc() {
+    const result = func();
+
+    if (result === true) {
+      callback(true);
+      return;
+    } else if (retryCount < maxRetry) {
+      setTimeOut(retryFunc, math.pow(2, retryCount) * 1000);
+    } else {
+      callback(false);
+    }
+    retryCount++;
+  }
+  retryFunc();
+}

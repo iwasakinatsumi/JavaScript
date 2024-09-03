@@ -10,3 +10,6 @@
  */
 
 export function* walk(rootPath) {}
+
+//出力結果は↓みたいな感じ
+//{path:'js/test/index.js',isDirectory:false}
