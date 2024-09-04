@@ -190,7 +190,7 @@ function f10() {
     .finally(logA);
 }
 
-//f10();
+f10();
 
 function f11() {
   // f12 との比較用: new Promise 内の throw は .catch でキャッチできるか？
@@ -208,4 +208,4 @@ function f12() {
   }).catch((e) => log(e.message));
 }
 
-f12();
+//f12();

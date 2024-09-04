@@ -32,3 +32,10 @@ function fetchSumOfFileSizes(path, callback) {
     iter();
   });
 }
+
+function _fetchSumOfFileSizes(path, callback) {
+  //上は1つずつ取得して、足していくのをファイルサイズを全部取得終了したら、最後に合計する
+  fs.readdir(path).then((files) => {
+    //ファイル取得出来たら、ファイルサイズを取得する部分をPromise.allにする
+  });
+}

@@ -69,13 +69,32 @@
   Y->A の順で出力された
 
 - f10
-  A が出力され、その後 Y の Error が catch された
+  A が出力され、その後 Y の 実行時エラーが発生した
+
+  file:///C:/js/JavaScript/ch13/ex02/index.js:29
+  throw new Error("Y");
+  ^
+
+  Error: Y
+  at errY (file:///C:/js/JavaScript/ch13/ex02/index.js:29:9)
+
+  Node.js v20.12.1
 
 - f11
-  X だけ出力された
+  X が出力された
 
 - f12
-  X の Error が catch されただけ
+  X の 実行時 Error が 発生した
+  file:///C:/js/JavaScript/ch13/ex02/index.js:26
+  throw new Error("X");
+  ^
+  Error: X
+  at errX (file:///C:/js/JavaScript/ch13/ex02/index.js:26:9)
+  at Timeout.\_onTimeout (file:///C:/js/JavaScript/ch13/ex02/index.js:207:22)
+  at listOnTimeout (node:internal/timers:573:17)
+  at process.processTimers (node:internal/timers:514:7)
+
+  Node.js v20.12.1
 
 # 理由
 

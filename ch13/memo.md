@@ -27,3 +27,10 @@ getJson()が戻る？
 getJson で url の取得が成功したら xxx が実行される。エラーは yyy で catch する
 
 3.async/await
+
+await Promise が完了するまでは待つ
+→ 前の処理が終わらない限り、次に進まない
+await は async がないと使えない
+async 宣言された関数の返り値は Promise
+
+並列実行には Promise.all を使う
