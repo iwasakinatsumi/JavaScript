@@ -8,6 +8,9 @@
  */
 
 export function* readLines(filePath) {
+  //一定バッファサイズごと
+  var bufferSize = 1024;
+
   try {
     fs.openSync();
     fs.readSync();

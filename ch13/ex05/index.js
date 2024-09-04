@@ -14,11 +14,20 @@ function g1() {
   });
 }
 
+g1();
+
 async function _g1() {
-  Promise.then((value) => {
-    console.log("A");
-  });
+  await wait(1000);
+  console.log("A");
+
+  await wait(2000);
+  console.log("B");
+
+  await wait(3000);
+  console.log("C");
 }
+
+_g1();
 
 function g2() {
   // TODO: new Promise を使わないように書き換えなさい
@@ -32,6 +41,20 @@ function g2() {
       .then(resolve, reject);
   });
 }
+
+//_g1と同じ？
+async function _g2() {
+  await wait(1000);
+  console.log("A");
+
+  await wait(2000);
+  console.log("B");
+
+  await wait(3000);
+  console.log("C");
+}
+
+_g2();
 
 function g3() {
   // 以下2つの関数が存在するとします (中身は適当)
@@ -57,6 +80,8 @@ function g3() {
     });
 }
 
+function _g3() {}
+
 function g4() {
   function someFunction() {
     return 42;
@@ -70,3 +95,5 @@ function g4() {
     return value;
   });
 }
+
+function _g4() {}
