@@ -7,13 +7,20 @@
  * 出題範囲: 12.3
  */
 
+const fs = require("fs");
+
 export function* readLines(filePath) {
   //一定バッファサイズごと
   var bufferSize = 1024;
+  //https://nodejs.org/api/buffer.html#static-method-bufferallocsize-fill-encoding
+  //指定サイズで区切る
+  var buffer = Buffer.alloc(bufferSize);
 
+  //Similar to fs.readFile(), when the path is a directory, the behavior of fs.readFileSync() is platform-specific.
   try {
-    fs.openSync();
-    fs.readSync();
+    fs.openSync(filePath);
+    fs.readSync(filePath, buffer, "utf-8");
+    //\nでsplit
   } catch (e) {
     console.log(e.message);
   } finally {
