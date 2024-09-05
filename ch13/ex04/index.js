@@ -34,7 +34,7 @@ function fetchFirstFileSize(path, callback) {
   });
 }
 
-function _fetchFirstSize(path, callback) {
+function _fetchFirstFileSize(path, callback) {
   fsPromises.readdir(path, callback).then(() => {});
 }
 
@@ -66,4 +66,8 @@ function fetchSumOfFileSizes(path, callback) {
     }
     iter();
   });
+}
+
+function _fetchSumOfFileSizes(path, callback) {
+  fsPromises.readdir(path, callback).then(() => {});
 }

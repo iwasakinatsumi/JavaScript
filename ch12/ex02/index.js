@@ -42,4 +42,4 @@ let result = it.next();
 while (!result.done) {
   result = it.next();
 }
-console.log(result.value);
+//console.log(result.value);

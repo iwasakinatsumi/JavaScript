@@ -1,13 +1,15 @@
 import { counter } from "./index.js";
 
+const c = counter();
+
 test("正常系", () => {
-  expect(counter.next()).toEqual(0);
+  expect(c.next().value).toEqual(0);
 });
 
 test("正常系", () => {
-  expect(counter.next()).toEqual(1);
+  expect(c.next().value).toEqual(1);
 });
 
 test("異常系", () => {
-  expect(counter.throw(new Error("リセット"))).toEqual("リセット");
+  expect(c.throw(new Error("リセット"))).toEqual("リセット");
 });

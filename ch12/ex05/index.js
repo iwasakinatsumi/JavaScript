@@ -18,9 +18,17 @@ export function* readLines(filePath) {
 
   //Similar to fs.readFile(), when the path is a directory, the behavior of fs.readFileSync() is platform-specific.
   try {
-    fs.openSync(filePath);
-    fs.readSync(filePath, buffer, "utf-8");
-    //\nでsplit
+    //filePathがファイルかどうかチェックする
+    const stats = fs.statSync(filePath);
+    //指定したパスがディレクトリかどうか判定する
+    const isDirectory = stats.isDirectory();
+    if (isDirectory) {
+      throw new Error("ファイルではありません");
+    } else {
+      fs.openSync(filePath);
+      fs.readSync(filePath, buffer, "utf-8");
+      //\nでsplit
+    }
   } catch (e) {
     console.log(e.message);
   } finally {
