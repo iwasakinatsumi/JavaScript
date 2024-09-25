@@ -1,0 +1,30 @@
+/** * ブラウザで動的なスクリプトのインポート (await import(url))
+できる環境を構築して動作確認しなさい (可能ならば cross-site にしなさい)。 *
+またその動作確認方法を文書で記述しなさい。 * 出題範囲 15.1.1.4 */
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cross-Site Dynamic Import</title>
+  </head>
+  <body>
+    <h1>Cross-Site Dynamic Import Example</h1>
+    <button id="loadModule">Load Module</button>
+    <div id="output"></div>
+
+    <script>
+      document
+        .getElementById("loadModule")
+        .addEventListener("click", async () => {
+          try {
+            const module = await import("http://localhost:8080/module.js"); // ローカルサーバーのURL
+            const message = module.greet("World");
+            document.getElementById("output").innerText = message;
+          } catch (error) {
+            console.error("Error loading module:", error);
+          }
+        });
+    </script>
+  </body>
+</html>
