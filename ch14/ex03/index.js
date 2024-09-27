@@ -6,7 +6,7 @@
 export class IgnoreAccentPattern {
   constructor(pattern) {
     if (typeof pattern === "string") {
-      this.pattern = this._normalizeString(pattern);
+      this.pattern = this.normalizeString(pattern);
       this.regex = new RegExp(this.pattern, "g");
     } else if (pattern instanceof RegExp) {
       this.pattern = pattern.source.replace(/[aeiou]/g, (match) => {
@@ -25,17 +25,17 @@ export class IgnoreAccentPattern {
     }
   }
 
-  _normalizeString(str) {
+  normalizeString(str) {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
 
   search(string) {
-    const normalizedString = this._normalizeString(string);
+    const normalizedString = this.normalizeString(string);
     return normalizedString.search(this.regex);
   }
 
   match(string) {
-    const normalizedString = this._normalizeString(string);
+    const normalizedString = this.normalizeString(string);
     const matches = normalizedString.match(this.regex);
     if (matches) {
       return matches.map((match) => this._normalizeString(match));
