@@ -12,3 +12,33 @@
  * ナビゲーションリンクのうち、"会社情報" のリンク
  * 出題範囲 15.3.1.1
  */
+
+const navLinks = document.querySelectorAll('nav a');
+console.log(navLinks);
+
+const firstProduct = document.querySelector('.product-list .product-item');
+console.log(firstProduct);
+
+const cartIcon = document.querySelector('.cart-icon img');
+console.log(cartIcon);
+
+const prices = document.querySelectorAll('.product-list .price');
+console.log(prices);
+
+const productImages = document.querySelectorAll('.product-list .product-item img');
+console.log(productImages);
+
+const searchButton = document.querySelector('.search-bar button');
+console.log(searchButton);
+
+const footerParagraphs = document.querySelectorAll('footer p');
+console.log(footerParagraphs);
+
+const evenProducts = document.querySelectorAll('.product-list .product-item:nth-child(even)');
+console.log(evenProducts);
+
+const accountImage = document.querySelector('header .account img');
+console.log(accountImage);
+
+const companyLink = document.querySelector('nav a[href="会社情報"]');
+console.log(companyLink);

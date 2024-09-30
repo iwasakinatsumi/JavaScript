@@ -12,6 +12,11 @@
           const products = document.querySelectorAll("#productList li");
           products.forEach((product) => {
             // ここにコードを書いて完成させる
+            product.style.display =
+              selectedCategory === "all" ||
+              product.dataset.category === selectedCategory
+                ? "block"
+                : "none";
           });
         });
     </script>
