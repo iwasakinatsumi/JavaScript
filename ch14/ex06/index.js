@@ -44,3 +44,5 @@ export function createMethodLogger(target) {
 
   return { proxy, history };
 }
+
+//参考：https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Proxy

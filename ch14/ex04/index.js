@@ -12,41 +12,28 @@ export class Hiragana {
       character.length !== 1 ||
       !this.isHiragana(character)
     ) {
-      throw new Error("ひらがな 1 文字を指定してください。");
+      throw new Error("ひらがなを1文字指定してください。");
     }
-    this.character = character;
-    this.codePoint = character.codePointAt(0);
+    this.character = character; //ひらがな
+    this.codePoint = character.codePointAt(0); //コード単位
   }
 
   isHiragana(character) {
-    return /^[\u3040-\u309F]$/.test(character); // ひらがな範囲をチェック
+    return /^[\u3040-\u309F]$/.test(character); // ひらがな範囲をチェックする
   }
 
+  //https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol/Symbol.toPrimitive
   [Symbol.toPrimitive](hint) {
     if (hint === "number") {
-      return this.codePoint; // 数字が期待される場合は UTF-16 コード単位を返す
+      return this.codePoint; // 数字の場合はUTF-16 コード単位を返す
     }
-    return this.character; // 文字列が期待される場合はひらがなを返す
+    return this.character; // それ以外はひらがなを返す
   }
 
   toString() {
     return this.character; // 文字列化するとひらがなを返す
   }
+
+  //50 音順(UTF-16 コード単位順)で<や>で比較、ソート？？
+  sort() {}
 }
-
-const hiraganaArray = [
-  new Hiragana("あ"),
-  new Hiragana("い"),
-  new Hiragana("う"),
-  new Hiragana("え"),
-  new Hiragana("お"),
-];
-
-console.log(hiraganaArray[0] == "あ"); // true
-console.log(hiraganaArray[1] == "い"); // true
-console.log(hiraganaArray[2] == "う"); // true
-console.log(hiraganaArray[3] == "え"); // true
-console.log(hiraganaArray[4] == "お"); // true
-
-console.log(hiraganaArray[0] == 123); // false
-console.log(hiraganaArray[1] == 3042); // true (UTF-16 コード単位)

@@ -1,0 +1,46 @@
+<!--navigator から取得できる要素をページ中に描画して詐欺サイト風に PC
+情報を羅列してリテラシが低い人の不安を煽る画面を作りなさい * 画面イメージ:
+https://ascii.jp/elem/000/000/449/449681/ * 出題範囲 15.1.6 */ -->
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3.6</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f9f9f9;
+      }
+      h1 {
+        color: #333;
+      }
+      .info {
+        background: #fff;
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>あなたの情報を入手しました！！</h1>
+    <div class="info" id="navigator-info"></div>
+
+    <script>
+      const info = document.getElementById("navigator-info");
+
+      const navigatorInfo = `
+            <strong>ユーザーエージェント:</strong> ${navigator.userAgent} <br>
+            <strong>プラットフォーム:</strong> ${navigator.platform} <br>
+            <strong>言語:</strong> ${navigator.language} <br>
+            <strong>接続状態:</strong> ${
+              navigator.onLine ? "オンライン" : "オフライン"
+            } <br>
+        `;
+
+      info.innerHTML = navigatorInfo;
+    </script>
+  </body>
+</html>
