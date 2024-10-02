@@ -10,3 +10,8 @@
  * 参考: Bookmarklet という一番身近な自動化技術
  * 出題範囲 15.3
  */
+
+javascript: window.open(
+  "https://qiita.com/search?q=" +
+    window.prompt("Qiitaで検索します", "検索ワード")
+);
