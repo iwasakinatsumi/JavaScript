@@ -20,3 +20,9 @@ Tailwind CSS を使う前提で HTML と JavaScript のコードを書き換え�
 ```
 
 出題範囲: 15.4
+
+# Tailwind CSS
+
+https://tailwindcss.com/
+
+css ファイルを別に作成することなく、html1 つで完結される。

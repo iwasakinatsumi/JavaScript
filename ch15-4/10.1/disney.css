@@ -1,0 +1,117 @@
+/* 全体のスタイル */
+/* フォントをデフォルトの"Meiryo"から"Comic Sans MS"に変更する*/
+/* 日本語だと判別付きづらいが、アルファベットだと違いが見やすい*/
+body {
+  font-family: "Comic Sans MS", cursive, sans-serif; /* 漫画風のフォント */
+  background-color: #f9f0d9; /* 明るいクリーム色 */
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+/* フォームのスタイル */
+/* display:flex で画面いっぱいに広がる */
+/* これを外すと左の方に固定サイズで表示される*/
+#new-todo-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* borderで黄色線に */
+/* デフォルトだと黒なので、ChatGPTのいう「ディズニーカラー」ではなくなるので、ディズニー風が薄れるかも*/
+#new-todo {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #ffcc00; /* ディズニーカラーの黄色 */
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+  font-size: 16px;
+}
+
+/*フォーカスが当たった際に通常の黄色から濃い黄色に変更する*/
+#new-todo:focus {
+  border-color: #ff9900; /* 濃い黄色 */
+}
+
+/* ボタンのスタイル */
+/* border-radiusで角を丸くしている*/
+button {
+  padding: 10px 15px;
+  background-color: #ff4081; /* ピンク */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+/*ボタンの上にカーソルがホバーされた際に通常のピンクから濃いピンクに変更する*/
+button:hover {
+  background-color: #e91e63; /* 濃いピンク */
+}
+
+/* ToDoリストのスタイル */
+/* padding 0をコメントアウトすると右にインデントがつくので、それを左揃えにしている*/
+#todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* boraderの2px dashedで枠を点線にする */
+/* このpxを大きくすると点線が強調される */
+li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 2px dashed #ffcc00; /* 黄色のダッシュライン */
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #fff; /* 白背景 */
+  transition: transform 0.2s;
+}
+
+/*追加したリストにカーソルがホバーされた際に枠が拡大して表示される*/
+li:hover {
+  transform: scale(1.02); /* ホバー時に拡大 */
+}
+
+/* font-weightで太字にする */
+label.content {
+  flex: 1;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+/* 完了したタスクのスタイル */
+/* 取り消し線を表示させる */
+.completed label.content {
+  text-decoration: line-through;
+  color: #666; /* グレー */
+}
+
+/* チェックボックス */
+/* チェックボックスの上にカーソルがホバーされるとカーソルがデフォルトの矢印から指マークに代わる*/
+.toggle {
+  cursor: pointer;
+}
+
+/* 削除ボタンのスタイル */
+/* 下記はCSS指定しているが、アイコンが上書きされるので、色などは反映されない*/
+/* 「✖」にカーソルがホバーされるとカーソルがデフォルトの矢印から指マークに代わる*/
+button.destroy {
+  background: transparent;
+  border: none;
+  color: #ff4081; /* ピンク */
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+/* 下記はCSS指定しているが、アイコンが上書きされるので、色などは反映されない*/
+button.destroy:hover {
+  color: #e91e63; /* 濃いピンク */
+}

@@ -1,0 +1,92 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f0f0f0; /* 明るい背景 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  border: 2px solid #ff0000; /* 赤色のボーダー */
+  border-radius: 5px 0 0 5px;
+  font-size: 16px;
+  width: 300px;
+}
+
+button {
+  padding: 10px;
+  background-color: #ffcc00; /* 明るい黄色 */
+  border: none;
+  border-radius: 0 5px 5px 0;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #ff9900; /* オレンジ色のホバー */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  width: 350px;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  background-color: #fff; /* 白い背景 */
+  border: 2px solid #000; /* 黒いボーダー */
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 10px;
+  transition: background-color 0.3s;
+}
+
+li:hover {
+  background-color: #ffe6b2; /* 明るい黄色のホバー */
+}
+
+.view {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+input.toggle {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.content {
+  flex-grow: 1;
+  font-size: 16px;
+}
+
+button.destroy {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #ff0000; /* 赤色 */
+  transition: color 0.3s;
+}
+
+button.destroy:hover {
+  color: #990000; /* 濃い赤色のホバー */
+}
+
+.completed .content {
+  text-decoration: line-through;
+  color: #888; /* 完了したタスクの色を薄く */
+}

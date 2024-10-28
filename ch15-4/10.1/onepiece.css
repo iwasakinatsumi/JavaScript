@@ -1,0 +1,99 @@
+/* 全体のスタイル */
+body {
+  font-family: "Arial", sans-serif; /* シンプルなフォント */
+  background-color: #e0f7fa; /* 明るい水色、海をイメージ */
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+/* フォームのスタイル */
+#new-todo-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#new-todo {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #ffcc00; /* 海賊の黄色 */
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+  font-size: 16px;
+}
+
+#new-todo:focus {
+  border-color: #ff9900; /* 濃い黄色 */
+}
+
+/* ボタンのスタイル */
+button {
+  padding: 10px 15px;
+  background-color: #ff5722; /* 海賊旗の赤 */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #e64a19; /* 濃い赤 */
+}
+
+/* ToDoリストのスタイル */
+#todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 2px solid #00796b; /* 深い海の青 */
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #fff; /* 白背景 */
+  transition: transform 0.2s;
+}
+
+li:hover {
+  transform: scale(1.02); /* ホバー時に拡大 */
+}
+
+label.content {
+  flex: 1;
+  margin-left: 10px;
+  font-weight: bold;
+  color: #00695c; /* 海の色 */
+}
+
+/* 完了したタスクのスタイル */
+.completed label.content {
+  text-decoration: line-through;
+  color: #666; /* グレー */
+}
+
+/* チェックボックス */
+.toggle {
+  cursor: pointer;
+}
+
+/* 削除ボタンのスタイル */
+button.destroy {
+  background: transparent;
+  border: none;
+  color: #ff5722; /* 海賊旗の赤 */
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+button.destroy:hover {
+  color: #e64a19; /* 濃い赤 */
+}

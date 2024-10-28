@@ -3,45 +3,38 @@
   <head>
     <title>Simple ToDo</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <script type="module" src="/ch15.04-10/ex02/index.js"></script>
-    <!-- 以下の style.css は Tailwind CLI によって生成される -->
-    <!-- html または js を変更した場合は README.md に従い Tailwind CLI を実行し style.css を再度生成すること -->
-    <link rel="stylesheet" href="/ch15.04-10/ex02/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="./index.js"></script>
+    <link rel="stylesheet" href="./style.css" />
   </head>
-  <!-- IMPORTANT: ChatGPT にはここから下の内容しか変更させないこと -->
-  <body>
-    <form id="new-todo-form">
-      <input type="text" id="new-todo" placeholder="What needs to be done?" />
-      <button>Add</button>
-    </form>
-    <ul id="todo-list">
-      <!-- NOTE: 以下のような要素を JavaScript で動的に追加する
-      <li class="completed">
-        <div class="view">
-          <input class="toggle" type="checkbox" checked />
-          <label class="content">研修の予習範囲を読む</label>
-          <button class="destroy"></button>
-        </div>
-      </li>
-      <li>
-        <div class="view">
-          <input class="toggle" type="checkbox" />
-          <label class="content">研修の練習問題を完了する</label>
-          <button class="destroy"></button>
-        </div>
-      </li>
-      -->
-    </ul>
-
-    <template id="todo-template">
-      <li>
-        <div class="view">
-          <input class="toggle" type="checkbox" />
-          <label class="content"></label>
-          <button class="destroy">❌</button>
-        </div>
-      </li>
-    </template>
+  <body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white shadow-md rounded-lg p-6 w-96">
+      <h1 class="text-xl font-bold mb-4 text-center">ToDo List</h1>
+      <form id="new-todo-form" class="flex mb-4">
+        <input
+          type="text"
+          id="new-todo"
+          placeholder="What needs to be done?"
+          class="flex-1 border border-gray-300 rounded-l-md p-2"
+        />
+        <button
+          class="bg-blue-500 text-white rounded-r-md p-2 hover:bg-blue-600 transition"
+        >
+          Add
+        </button>
+      </form>
+      <ul id="todo-list" class="list-disc pl-5">
+        <!-- JavaScript で動的に追加される -->
+      </ul>
+      <template id="todo-template">
+        <li>
+          <div class="flex items-center justify-between mb-2">
+            <input class="toggle" type="checkbox" />
+            <label class="content flex-1 ml-2"></label>
+            <button class="destroy text-red-500">❌</button>
+          </div>
+        </li>
+      </template>
+    </div>
   </body>
 </html>

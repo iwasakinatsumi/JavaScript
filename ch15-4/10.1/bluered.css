@@ -1,0 +1,88 @@
+/* 全体のスタイル */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f8ff; /* 薄い青 */
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
+
+/* フォームのスタイル */
+#new-todo-form {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+#new-todo {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #007bff; /* 青色の枠 */
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+/*フォーカスが当たった際に枠線を濃い青色にする*/
+#new-todo:focus {
+  border-color: #0056b3; /* 濃い青色 */
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #dc3545; /* 赤色 */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #c82333; /* 濃い赤色 */
+}
+
+/* ToDoリストのスタイル */
+#todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #007bff; /* 青色の枠 */
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: white;
+}
+
+label.content {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.completed label.content {
+  text-decoration: line-through;
+  color: #6c757d; /* グレー */
+}
+
+.toggle {
+  cursor: pointer;
+}
+
+/* 削除ボタンのスタイル */
+button.destroy {
+  background: transparent;
+  border: none;
+  color: #dc3545; /* 赤色 */
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+button.destroy:hover {
+  color: #c82333; /* 濃い赤色 */
+}
