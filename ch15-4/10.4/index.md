@@ -20,6 +20,15 @@ return;
 /_ NOTE: scrollTo または scrollIntoView でスムーズにスクロールしなさい _/
 });
 
-参考: 完成後のイメージは以下:
+参考: 完成後のイメージは ex04.gif
 
 出題範囲: 15.5
+
+作業メモ：  
+貼り付けできなかったので、下記の記事に従って対応。(allow pasting を実行)  
+https://qiita.com/flano_yuki/items/adc778aa8bcede2c10e9
+
+RICOH の HP で実施してみた  
+gif と同じようにリンクのタブ？が表示されてクリックすると該当のところへ遷移した
+ブックマークレット、反応がない…  
+alert とかも動かないのはなぜ？

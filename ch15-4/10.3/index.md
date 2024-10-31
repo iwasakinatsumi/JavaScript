@@ -6,3 +6,17 @@ CSS のデバッグ を参考にして以下を実施しなさい:
 15.4-10.2 のアプリの body 要素に対し、元々 HTML および JS 内で利用していなかった Tailwind CSS のクラス (bg-rose-600 など何でも良い) を開発者ツールから追加すると変更が反映されないが、これは何故か調べなさい
 
 出題範囲: 15.4
+
+# やったこと
+点線の値変更：2px→10px  
+プロパティの追加：liに対してbackground-colorの追加
+
+実行できる操作：https://developer.chrome.com/docs/devtools/css/reference?hl=ja
+- paddingの調整
+- 色見本からの色の選択　https://developer.chrome.com/docs/devtools/css/color?hl=ja
+- cssのその場での修正 https://developer.chrome.com/docs/devtools/css/reference?hl=ja#style-rule
+
+# 反映されない理由
+
+拡張ツール：
+https://chromewebstore.google.com/detail/tailwind-css-devtools/pgamkpjkbfldnmemhcbekimfdnjcgkco?hl=ja
