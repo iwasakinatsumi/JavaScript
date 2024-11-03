@@ -1,3 +1,9 @@
+// ex11 の続きを実装し、完了または未完了の ToDo のみ表示できるような ToDo アプリを完成させなさい。
+// 補足: // ここを実装してね 以外の実装を変更してもよい。ToDo の完了や削除を Active や Completed 画面に反映させるためには、それぞれの操作に対するイベントリスナーも修正する必要がある。
+// 参考: 完成後のイメージは以下:
+
+// 出題範囲: 15.10
+
 const form = document.querySelector("#new-todo-form");
 const list = document.querySelector("#todo-list");
 const input = document.querySelector("#new-todo");
@@ -45,4 +51,17 @@ form.addEventListener("submit", (e) => {
 
 window.addEventListener("hashchange", () => {
   // ここを実装してね
+  const hash = window.location.hash;
+
+  // 現在のハッシュに基づいて表示するタスクをフィルタリング
+  const filteredTodos = todos.filter((todo) => {
+    if (hash === "#/completed") {
+      return todo.completed; // completed が true のもののみ
+    } else if (hash === "#/active") {
+      return !todo.completed; // completed が false のもののみ
+    }
+    return true; // デフォルトは全部
+  });
+
+  renderTodos(filteredTodos); // フィルタされたタスクを表示
 });

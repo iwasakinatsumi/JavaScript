@@ -59,3 +59,13 @@ pushState はいつ実行されているだろうか？
 この問題を通して「昨今のフレームワークはリンク (通常は <a> タグを利用) ですら内部で複雑なことを実施している」ことが伝われば幸いである (もしかしたらトラブル時に知っておくと助けになるかもしれない)。余談だが Next.js App Router と控えめにお付き合いして普通の Web アプリを配信する のように <Link> を使わないスタイルも存在する。
 https://zenn.dev/overflow_offers/articles/20240112-using-nextjs-app-router-sparingly
 出題範囲: 15.10
+
+# 動作確認
+
+foo→bar に切り替わる
+![alt text](image-1.png)
+
+bar→foo に切り替わる
+![alt text](image.png)
+
+# 問題

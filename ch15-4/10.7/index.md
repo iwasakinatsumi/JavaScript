@@ -12,5 +12,6 @@ SVG：Scalable Vector Graphics の略称
 
 - 数学的な図形で画像を表現するので、複雑な表現が難しい
 - ファイルサイズが jpeg や png に比べて大きい
+- 特殊なツールがないと編集できない
 
 参考：https://prebell.so-net.ne.jp/tips/pre_23082201.html

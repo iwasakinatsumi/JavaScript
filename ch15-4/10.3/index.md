@@ -8,15 +8,18 @@ CSS のデバッグ を参考にして以下を実施しなさい:
 出題範囲: 15.4
 
 # やったこと
+
 点線の値変更：2px→10px  
-プロパティの追加：liに対してbackground-colorの追加
+プロパティの追加：li に対して background-color の追加
 
 実行できる操作：https://developer.chrome.com/docs/devtools/css/reference?hl=ja
-- paddingの調整
+
+- padding の調整
 - 色見本からの色の選択　https://developer.chrome.com/docs/devtools/css/color?hl=ja
-- cssのその場での修正 https://developer.chrome.com/docs/devtools/css/reference?hl=ja#style-rule
+- css のその場での修正 https://developer.chrome.com/docs/devtools/css/reference?hl=ja#style-rule
 
 # 反映されない理由
 
+再ビルドを実行しないといけない？  
 拡張ツール：
 https://chromewebstore.google.com/detail/tailwind-css-devtools/pgamkpjkbfldnmemhcbekimfdnjcgkco?hl=ja
