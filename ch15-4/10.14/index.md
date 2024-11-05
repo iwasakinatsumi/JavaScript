@@ -66,6 +66,16 @@ foo→bar に切り替わる
 ![alt text](image-1.png)
 
 bar→foo に切り替わる
-![alt text](image.png)
+![alt text](image-3.png)
 
 # 問題
+
+ネットワーク状態  
+![alt text](image-2.png)  
+通信は発生している？
+
+pushState の実行タイミング：非同期
+https://developer.mozilla.org/ja/docs/Web/API/History/pushState  
+unused の歴史的な理由？
+
+リロードしてもそのまま(foo の場合は foo のページが表示され、bar の場合は bar のページが表示された。)
