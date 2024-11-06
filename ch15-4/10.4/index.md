@@ -29,6 +29,10 @@ return;
 https://qiita.com/flano_yuki/items/adc778aa8bcede2c10e9
 
 RICOH の HP で実施してみた  
-gif と同じようにリンクのタブ？が表示されてクリックすると該当のところへ遷移した
-ブックマークレット、反応がない…  
-alert とかも動かないのはなぜ？
+gif と同じようにリンクのタブ？が表示されてクリックすると該当のところへ遷移した  
+→ いきなりその部分が表示される
+
+ブックマークレットを作成
+
+scrollIntoView
+https://developer.mozilla.org/ja/docs/Web/API/Element/scrollIntoView
