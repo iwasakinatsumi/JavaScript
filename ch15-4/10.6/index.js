@@ -2,7 +2,6 @@
  * ex06/index.js の続きを実装し Web Components を使った ToDo アプリを完成させなさい。
  * 補足: この問題では ToDo アプリ全体を 1 つの Web Components (<todo-app>) としたが
  * TodoMVC の例 のように複数の Web Components に分けて実装する方法も考えられる。
- * https://github.com/tastejs/todomvc/tree/master/examples/web-components
  * 出題範囲: 15.6
  */
 
@@ -28,7 +27,27 @@ class TodoApp extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
     this.form = this.shadowRoot.querySelector("#new-todo-form");
-    // TODO: 残りを実装
+    this.input = this.shadowRoot.querySelector("#new-todo");
+    this.todoList = this.shadowRoot.querySelector("#todo-list");
+
+    this.form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this.addTodo();
+    });
+  }
+
+  addTodo() {
+    //入力が空なら何も実施しない
+    const todoText = this.input.value.trim();
+    if (todoText === "") return;
+
+    const li = document.createElement("li");
+    li.textContent = todoText;
+
+    this.todoList.appendChild(li);
+    this.input.value = "";
+
+    //このあと？
   }
 }
 
