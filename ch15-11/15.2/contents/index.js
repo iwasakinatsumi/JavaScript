@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 成功したら取得したタスクを appendToDoItem で ToDo リストの要素として追加しなさい
     tasks.forEach((task) => appendToDoItem(task));
   } catch (error) {
-    console.error(error);
+    alert(error);
   }
 });
 
@@ -45,7 +45,7 @@ form.addEventListener("submit", async (e) => {
     // 成功したら作成したタスクを appendToDoItem で ToDo リストの要素として追加しなさい
     appendToDoItem(newTask);
   } catch (error) {
-    console.error(error);
+    alert(error);
   }
 });
 
@@ -67,7 +67,7 @@ function appendToDoItem(task) {
     // toggle が変化 (change) した際に API を呼び出してタスクの状態を更新し
     try {
       const response = await fetch(`/api/tasks/${task.id}`, {
-        method: "PUT",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
@@ -79,7 +79,7 @@ function appendToDoItem(task) {
       // 成功したら label.style.textDecorationLine を変更しなさい
       label.style.textDecorationLine = toggle.checked ? "line-through" : "none";
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   });
 
@@ -97,7 +97,7 @@ function appendToDoItem(task) {
       // 成功したら elem を削除しなさい
       elem.remove();
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   });
 
@@ -106,4 +106,10 @@ function appendToDoItem(task) {
   elem.appendChild(label);
   elem.appendChild(destroy);
   list.prepend(elem);
+}
+
+function retryWithExponentialBackoff(func, callback) {
+  var second = 3000; //初回の待ち時間
+
+  setTimeout(func(), second);
 }

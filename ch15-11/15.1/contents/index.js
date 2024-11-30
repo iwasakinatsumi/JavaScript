@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 成功したら取得したタスクを appendToDoItem で ToDo リストの要素として追加しなさい
     tasks.forEach((task) => appendToDoItem(task));
   } catch (error) {
-    console.error(error);
+    alert(error);
   }
 });
 
@@ -45,7 +45,7 @@ form.addEventListener("submit", async (e) => {
     // 成功したら作成したタスクを appendToDoItem で ToDo リストの要素として追加しなさい
     appendToDoItem(newTask);
   } catch (error) {
-    console.error(error);
+    alert(error);
   }
 });
 
@@ -59,15 +59,14 @@ function appendToDoItem(task) {
   label.style.textDecorationLine = "none";
 
   const toggle = document.createElement("input");
-  // TODO: toggle が変化 (change) した際に API を呼び出してタスクの状態を更新し
-  // 成功したら label.style.textDecorationLine を変更しなさい
   toggle.type = "checkbox";
   toggle.checked = task.completed;
   toggle.addEventListener("change", async () => {
-    // toggle が変化 (change) した際に API を呼び出してタスクの状態を更新し
+    // TODO: toggle が変化 (change) した際に API を呼び出してタスクの状態を更新し
+    // 成功したら label.style.textDecorationLine を変更しなさい
     try {
       const response = await fetch(`/api/tasks/${task.id}`, {
-        method: "PUT",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
@@ -76,10 +75,9 @@ function appendToDoItem(task) {
       if (!response.ok) {
         throw new Error("タスクの更新に失敗しました");
       }
-      // 成功したら label.style.textDecorationLine を変更しなさい
       label.style.textDecorationLine = toggle.checked ? "line-through" : "none";
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   });
 
@@ -88,7 +86,7 @@ function appendToDoItem(task) {
   destroy.textContent = "削除";
   destroy.addEventListener("click", async () => {
     try {
-      const response = await fetch(`/api/Task/${task.id}`, {
+      const response = await fetch(`/api/tasks/${task.id}`, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -97,7 +95,7 @@ function appendToDoItem(task) {
       // 成功したら elem を削除しなさい
       elem.remove();
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   });
 
@@ -106,4 +104,6 @@ function appendToDoItem(task) {
   elem.appendChild(label);
   elem.appendChild(destroy);
   list.prepend(elem);
+
+  console.log(document.cookie);
 }
