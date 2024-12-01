@@ -47,7 +47,7 @@ function cspMiddleware(_url, req, res) {
   // "World"だけ表示しない
   res.setHeader(
     "Content-Security-Policy",
-    "default-src 'self'; script-src 'self' 'nonce-123';"
+    "default-src 'self'; script-src 'self' 'nonce-12345678';"
   );
   return true;
 }

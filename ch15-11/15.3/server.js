@@ -348,7 +348,7 @@ async function main() {
     .createServer(async function (req, res) {
       await routes(
         // TODO: この行のコメントを外す
-        // ["OPTIONS", "/api/*", nopHandler, cors],
+        ["OPTIONS", "/api/*", nopHandler, cors],
         ["GET", "/api/tasks", listTasksHandler, authz, cors],
         ["GET", "/api/tasks/{id}", getTaskHandler, authz, cors],
         ["POST", "/api/tasks", createTaskHandler, authz, cors],

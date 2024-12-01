@@ -13,7 +13,7 @@ onmessage = function (message) {
 
   function drawSierpinski(x0, y0, x1, y1, depth) {
     if (depth === 0) {
-      // ベースケース：深さが0ならば三角形を塗りつぶす
+      // 深さが0ならば三角形を塗りつぶす
       for (let y = y0; y < y1; y++) {
         for (let x = x0; x < x1; x++) {
           const index = (y * width + x) * 4;

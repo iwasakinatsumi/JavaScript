@@ -67,7 +67,7 @@ document.getElementById("image").addEventListener("change", (event) => {
         outputData[outputIndex] = r / kernelSum;
         outputData[outputIndex + 1] = g / kernelSum;
         outputData[outputIndex + 2] = b / kernelSum;
-        outputData[outputIndex + 3] = 255; // アルファチャネルは不変
+        outputData[outputIndex + 3] = 255;
       }
     }
 
