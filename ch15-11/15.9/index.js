@@ -1,3 +1,7 @@
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const WebSocket = require("ws");
+
 // 50 x 50 の盤面とする
 const ROWS = 50;
 const COLS = 50;

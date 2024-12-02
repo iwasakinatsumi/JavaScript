@@ -1,3 +1,7 @@
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const WebSocket = require("ws");
+
 function sendRequest(req) {
   return new Promise((resolve, reject) => {
     const socket = new WebSocket("ws://localhost:3003");
