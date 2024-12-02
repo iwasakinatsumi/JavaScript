@@ -8,6 +8,28 @@ document
   .querySelector('button[type="submit"]')
   .addEventListener("click", addTodo);
 
+let db;
+const request = indexedDB.open("todoDB", 1);
+
+request.onupgradeneeded = (event) => {
+  db = event.target.result;
+  const objectStore = db.createObjectStore("todos", {
+    keyPath: "id",
+    autoIncrement: true,
+  });
+  objectStore.createIndex("text", "text", { unique: false });
+  objectStore.createIndex("completed", "completed", { unique: false });
+};
+
+request.onsuccess = (event) => {
+  db = event.target.result;
+  loadTodos();
+};
+
+request.onerror = (event) => {
+  console.error("IndexedDB error:", event.target.errorCode);
+};
+
 //ToDo作成関数
 function addTodo() {
   const todoInput = document.getElementById("new-todo");
@@ -31,15 +53,62 @@ function addTodo() {
   todoText = "";
 }
 
+function loadTodos() {
+  const transaction = db.transaction(["todos"], "readonly");
+  const objectStore = transaction.objectStore("todos");
+
+  objectStore.openCursor().onsuccess = (event) => {
+    const cursor = event.target.result;
+    if (cursor) {
+      const todo = cursor.value;
+      const todoList = document.getElementById("todo-list");
+      const listItem = document.createElement("li");
+      listItem.innerHTML = `
+        <div>
+          <input type="checkbox" role="checkbox" ${
+            todo.completed ? "checked" : ""
+          } onchange="toggleTodo(this)">
+          <label>${todo.text}</label>
+          <button role="button" onclick="deleteTodoWithId(${
+            todo.id
+          }, this)">❌</button>
+        </div>
+      `;
+      todoList.append(listItem);
+      cursor.continue();
+    }
+  };
+}
+
 //チェックつける
 function toggleTodo(checkbox) {
   const listItem = checkbox.parentElement;
   listItem.classList.toggle("checked", checkbox.checked);
   //取り消し線の設定　 ラベルのスタイルを変更
+
+  const label = listItem.querySelector("label");
+  const todoText = label.textContent;
+
+  const transaction = db.transaction(["todos"], "readwrite");
+  const objectStore = transaction.objectStore("todos");
+  const index = objectStore.index("text");
+
+  index.openCursor(todoText).onsuccess = (event) => {
+    const cursor = event.target.result;
+    if (cursor) {
+      const todo = cursor.value;
+      todo.completed = checkbox.checked;
+      objectStore.put(todo);
+    }
+  };
 }
 
 //消す
 function deleteTodo(button) {
   const listItem = button.parentElement;
   listItem.remove();
+
+  const transaction = db.transaction(["todos"], "readwrite");
+  const objectStore = transaction.objectStore("todos");
+  objectStore.delete(id);
 }

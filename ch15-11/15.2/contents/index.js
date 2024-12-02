@@ -4,11 +4,9 @@ const input = document.querySelector("#new-todo");
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const response = await fetch("/api/tasks");
-    if (!response.ok) {
-      throw new Error("タスクの取得に失敗しました");
-    }
-    const tasks = await response.json();
+    const tasks = await retryWithExponentialBackoff(() =>
+      fetchWithTimeout("/api/tasks")
+    );
     // 成功したら取得したタスクを appendToDoItem で ToDo リストの要素として追加しなさい
     tasks.forEach((task) => appendToDoItem(task));
   } catch (error) {
@@ -88,9 +86,11 @@ function appendToDoItem(task) {
   destroy.textContent = "削除";
   destroy.addEventListener("click", async () => {
     try {
-      const response = await fetch(`/api/Task/${task.id}`, {
-        method: "DELETE",
-      });
+      await retryWithExponentialBackoff(() =>
+        fetchWithTimeout(`/api/tasks/${task.id}`, {
+          method: "DELETE",
+        })
+      );
       if (!response.ok) {
         throw new Error("タスクの削除に失敗しました");
       }
@@ -108,8 +108,49 @@ function appendToDoItem(task) {
   list.prepend(elem);
 }
 
-function retryWithExponentialBackoff(func, callback) {
-  var second = 3000; //初回の待ち時間
+//タイムアウトの対応
+async function fetchWithTimeout(resource, options = {}) {
+  const { timeout = 3000 } = options;
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+  options.signal = controller.signal;
 
-  setTimeout(func(), second);
+  try {
+    const response = await fetch(resource, options);
+    clearTimeout(id);
+    if (!response.ok) {
+      if (response.status >= 500 && response.status < 600) {
+        throw new Error("サーバエラーが発生しました");
+      }
+      throw new Error("タスクの取得に失敗しました");
+    }
+    return response.json();
+  } catch (error) {
+    if (error.name === "AbortError") {
+      throw new Error("リクエストがタイムアウトしました");
+    }
+    throw error;
+  }
+}
+
+//リトライの対応
+async function retryWithExponentialBackoff(
+  fetchFunction,
+  retries = 3,
+  delay = 1000
+) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      return await fetchFunction();
+    } catch (error) {
+      if (
+        i === retries - 1 ||
+        error.message === "リクエストがタイムアウトしました"
+      ) {
+        throw error;
+      }
+      await new Promise((resolve) => setTimeout(resolve, delay));
+      delay *= 2;
+    }
+  }
 }
