@@ -3,104 +3,48 @@
 // (例：タブ A とタブ B を開いている状態で、タブ A で ToDo を追加し、タブ B に切り替えると タブ A で追加した ToDo が表示される)
 // 出題範囲: 15.12.3
 
+//localStorageなのでindexedDBに修正する
+
+//ページが読み込まれたらTodoをとってくる
+document.addEventListener("DOMContentLoaded", loadTodos);
+
 //ボタンを押した際にイベントを発火させる
 document
   .querySelector('button[type="submit"]')
   .addEventListener("click", addTodo);
 
-let db;
-const request = indexedDB.open("todoDB", 1);
-
-request.onupgradeneeded = (event) => {
-  db = event.target.result;
-  const objectStore = db.createObjectStore("todos", {
-    keyPath: "id",
-    autoIncrement: true,
-  });
-  objectStore.createIndex("text", "text", { unique: false });
-  objectStore.createIndex("completed", "completed", { unique: false });
-};
-
-request.onsuccess = (event) => {
-  db = event.target.result;
-  loadTodos();
-};
-
-request.onerror = (event) => {
-  console.error("IndexedDB error:", event.target.errorCode);
-};
-
 //ToDo作成関数
 function addTodo() {
   const todoInput = document.getElementById("new-todo");
-  const todoText = todoInput.value.trim();
+  let todoText = todoInput.value.trim();
   if (todoText === "") return;
 
   const todoList = document.getElementById("todo-list");
 
   const listItem = document.createElement("li");
   listItem.innerHTML = `
-  <div>
-        <input type="checkbox" role="checkbox" onchange="toggleTodo(this)">
-        <label>${todoText}</label>
-        <button role="button" onclick="deleteTodo(this)">❌</button>
-        </div>
-
-    `;
+    <div>
+      <input type="checkbox" role="checkbox" onchange="toggleTodo(this)">
+      <label>${todoText}</label>
+      <button role="button" onclick="deleteTodo(this)">❌</button>
+    </div>
+  `;
   todoList.append(listItem);
 
+  //localStorageに保存する
+  saveTodos();
+
   //入力値のクリア
-  todoText = "";
-}
-
-function loadTodos() {
-  const transaction = db.transaction(["todos"], "readonly");
-  const objectStore = transaction.objectStore("todos");
-
-  objectStore.openCursor().onsuccess = (event) => {
-    const cursor = event.target.result;
-    if (cursor) {
-      const todo = cursor.value;
-      const todoList = document.getElementById("todo-list");
-      const listItem = document.createElement("li");
-      listItem.innerHTML = `
-        <div>
-          <input type="checkbox" role="checkbox" ${
-            todo.completed ? "checked" : ""
-          } onchange="toggleTodo(this)">
-          <label>${todo.text}</label>
-          <button role="button" onclick="deleteTodoWithId(${
-            todo.id
-          }, this)">❌</button>
-        </div>
-      `;
-      todoList.append(listItem);
-      cursor.continue();
-    }
-  };
+  todoInput.value = "";
 }
 
 //チェックつける
 function toggleTodo(checkbox) {
   const listItem = checkbox.parentElement;
   listItem.classList.toggle("checked", checkbox.checked);
-  //取り消し線の設定　 ラベルのスタイルを変更
 
-  const label = listItem.querySelector("label");
-  const todoText = label.textContent;
-
-  const transaction = db.transaction(["todos"], "readwrite");
-  const objectStore = transaction.objectStore("todos");
-  const index = objectStore.index("text");
-
-  index.openCursor(todoText).onsuccess = (event) => {
-    const cursor = event.target.result;
-    if (cursor) {
-      const todo = cursor.value;
-      todo.completed = checkbox.checked;
-      objectStore.put(todo);
-    }
-  };
+  //localStorageに保存する
+  saveTodos();
 }
 
 //消す
@@ -108,7 +52,46 @@ function deleteTodo(button) {
   const listItem = button.parentElement;
   listItem.remove();
 
-  const transaction = db.transaction(["todos"], "readwrite");
-  const objectStore = transaction.objectStore("todos");
-  objectStore.delete(id);
+  //localStorageに保存する
+  saveTodos();
 }
+
+//localStorageに保存する関数
+function saveTodos() {
+  const todoList = document.getElementById("todo-list");
+  const todos = [];
+  for (let listItem of todoList.children) {
+    const todoText = listItem.querySelector("label").textContent;
+    const isChecked = listItem.querySelector("input[type='checkbox']").checked;
+    todos.push({ text: todoText, checked: isChecked });
+  }
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
+
+//localStorageからTodoを読みだす関数
+function loadTodos() {
+  const todos = JSON.parse(localStorage.getItem("todos"));
+  if (todos) {
+    const todoList = document.getElementById("todo-list");
+    todos.forEach((todo) => {
+      const listItem = document.createElement("li");
+      listItem.innerHTML = `
+        <div>
+          <input type="checkbox" role="checkbox" ${
+            todo.checked ? "checked" : ""
+          } onchange="toggleTodo(this)">
+          <label>${todo.text}</label>
+          <button role="button" onclick="deleteTodo(this)">❌</button>
+        </div>
+      `;
+      todoList.append(listItem);
+    });
+  }
+}
+
+//Todoを反映させる
+window.addEventListener("storage", (event) => {
+  if (event.key === "todos") {
+    loadTodos();
+  }
+});

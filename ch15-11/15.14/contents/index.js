@@ -31,7 +31,7 @@ async function getMessageFromServer() {
   eventSource.onmessage = (event) => {
     const message = document.createElement("div");
     message.textContent = event.data;
-    messagesDiv.appendChild(message);
+    //メッセージ表示
   };
 
   eventSource.onerror = (error) => {

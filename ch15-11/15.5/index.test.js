@@ -1,17 +1,7 @@
 const { addTodo, deleteTodoWithId } = require("./index");
 
 describe("ToDo App", () => {
-  beforeEach(() => {
-    document.body.innerHTML = `
-      <form id="new-todo-form">
-        <input type="text" id="new-todo" />
-        <button type="submit">Add</button>
-      </form>
-      <ul id="todo-list"></ul>
-    `;
-  });
-
-  test("should add a new todo", () => {
+  test("追加", () => {
     const input = document.getElementById("new-todo");
     input.value = "aaa";
     addTodo();
@@ -21,7 +11,7 @@ describe("ToDo App", () => {
     expect(todoList.children[0].querySelector("label").textContent).toBe("aaa");
   });
 
-  test("should toggle todo completion", () => {
+  test("チェック", () => {
     const input = document.getElementById("new-todo");
     input.value = "aaa";
     addTodo();
@@ -34,7 +24,7 @@ describe("ToDo App", () => {
     expect(listItem.classList.contains("checked")).toBe(true);
   });
 
-  test("should delete a todo", () => {
+  test("削除", () => {
     const input = document.getElementById("new-todo");
     input.value = "aaa";
     addTodo();
