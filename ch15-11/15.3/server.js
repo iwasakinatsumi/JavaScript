@@ -243,7 +243,13 @@ function cookieAuthzMiddleware(_url, req, res, params) {
 // CORS のヘッダを返すミドルウェア
 function corsMiddleware(_url, _req, res) {
   // TODO: CORS に必要なヘッダを複数設定する
-  res.setHeader("TODO", "TODO");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");//3000を許可
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+  );//許可するメソッドを設定
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");//許可するヘッダを設定
+  res.setHeader("Access-Control-Allow-Credentials", "true");//Cookieを設定
   return true;
 }
 

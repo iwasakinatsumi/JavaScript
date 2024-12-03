@@ -22,4 +22,25 @@ async function getMessageFromServer() {
   messageContainer.appendChild(messageElement);
 
   // TODO: ここにサーバーとのやり取り等を実装しなさい
+  // ボタンを非活性にする
+  button.disabled = true;
+
+  // EventSource を作成してサーバーと通信を開始
+  const eventSource = new EventSource("http://localhost:3000/message");
+
+  eventSource.onmessage = (event) => {
+    const message = document.createElement("div");
+    message.textContent = event.data;
+    messagesDiv.appendChild(message);
+  };
+
+  eventSource.onerror = (error) => {
+    console.error("EventSource エラー:", error);
+    eventSource.close();
+    button.disabled = false; // エラーが発生した場合、ボタンを再度活性化する
+  };
+
+  eventSource.onopen = () => {
+    console.log("EventSource 接続が開かれました");
+  };
 }
