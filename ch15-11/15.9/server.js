@@ -62,6 +62,31 @@ function updateGrid(grid) {
     for (let col = 0; col < COLS; col++) {
       // 周囲のセルの生存数を数えて nextGrid[row][col] に true or false を設定する
       //（15.04-10.10の実装を利用）
+      // 周囲のセルの生存数を数えて nextGrid[row][col] に true or false を設定する (実装してね)
+      const aliveNeighbors = countAliveNeighbors(grid, row, col);
+
+      // ライフゲームのルールに従って次の状態を設定する
+      /**
+       * 誕生
+       * 死んでいるセルに隣接する生きたセルがちょうど3つあれば、次の世代が誕生する。
+       * 生存
+       * 生きているセルに隣接する生きたセルが2つか3つならば、次の世代でも生存する。
+       * 過疎
+       * 生きているセルに隣接する生きたセルが1つ以下ならば、過疎により死滅する。
+       * 過密
+       * 生きているセルに隣接する生きたセルが4つ以上ならば、過密により死滅する。
+       */
+      if (grid[row][col]) {
+        //　自分が生きている場合
+        if (aliveNeighbors <= 1 || aliveNeighbors >= 4) {
+          nextGrid[row][col] = false; // 死亡
+        }
+      } else {
+        // 自分が死んでいる場合
+        if (aliveNeighbors === 3) {
+          nextGrid[row][col] = true; // 生存
+        }
+      }
     }
   }
   return nextGrid;

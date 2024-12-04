@@ -13,47 +13,96 @@ document
   .querySelector('button[type="submit"]')
   .addEventListener("click", addTodo);
 
+let db;
+const request = indexedDB.open("todoDB", 1); //データベースのv1をリクエスト
+
+//成功したとき
+request.onsuccess = (event) => {
+  db = event.target.result;
+  loadTodos();
+};
+
+//失敗したとき
+request.onerror = (event) => {
+  alert(event.target.errorCode);
+};
+
+//初期化の
+request.onupgradeneeded = (event) => {
+  db = event.target.result;
+  //一意なIDとtextとcheckedを持つオブジェクトストアを作成する
+  //IDの作成？？
+  const objectStore = db.createObjectStore("todos", { keyPath: "id" });
+  objectStore.createIndex("text", "text");
+  objectStore.createIndex("checked", "checked");
+};
+
 //ToDo作成関数
 function addTodo() {
   const todoInput = document.getElementById("new-todo");
   let todoText = todoInput.value.trim();
   if (todoText === "") return;
 
-  const todoList = document.getElementById("todo-list");
+  //トランザクションオブジェクト
+  const transaction = db.transaction(["todos"], "readwrite");
+  //トランザクションからオブジェクトストアを取得する
+  const objectStore = transaction.objectStore("todos");
+  //リクエストの実行
+  const request = objectStore.add({ text: todoText, checked: false });
 
-  const listItem = document.createElement("li");
-  listItem.innerHTML = `
-    <div>
-      <input type="checkbox" role="checkbox" onchange="toggleTodo(this)">
-      <label>${todoText}</label>
-      <button role="button" onclick="deleteTodo(this)">❌</button>
-    </div>
-  `;
-  todoList.append(listItem);
+  //成功
+  request.onsuccess = () => {
+    const todoList = document.getElementById("todo-list");
+    const listItem = document.createElement("li");
+    listItem.innerHTML = `
+      <div>
+        <input type="checkbox" role="checkbox" onchange="toggleTodoWithId(${request.result}, this)">
+        <label>${todoText}</label>
+        <button role="button" onclick="deleteTodoWithId(${request.result}, this)">❌</button>
+      </div>
+    `;
+    todoList.append(listItem);
+    todoInput.value = "";
+  };
 
-  //localStorageに保存する
-  saveTodos();
-
-  //入力値のクリア
-  todoInput.value = "";
+  //失敗
+  request.onerror = (event) => {
+    alert(event.target.errorCode);
+  };
 }
 
 //チェックつける
-function toggleTodo(checkbox) {
+function toggleTodo(id, checkbox) {
   const listItem = checkbox.parentElement;
   listItem.classList.toggle("checked", checkbox.checked);
 
-  //localStorageに保存する
-  saveTodos();
+  //トランザクション作って、そのidのものを取得して、チェックを変更する
+  const transaction = db.transaction(["todos"], "readwrite");
+  const objectStore = transaction.objectStore("todos");
+  const request = objectStore.get(id);
+
+  //成功したらチェック付けて保存する
+  request.onsuccess = (event) => {
+    const todo = event.target.result;
+    todo.checked = checkbox.checked;
+    objectStore.put(todo);
+  };
+
+  //失敗
+  request.onerror = (event) => {
+    alert(event.target.errorCode);
+  };
 }
 
 //消す
-function deleteTodo(button) {
+function deleteTodo(id, button) {
   const listItem = button.parentElement;
   listItem.remove();
 
-  //localStorageに保存する
-  saveTodos();
+  //トランザクション作って、そのidのものを削除する
+  const transaction = db.transaction(["todos"], "readwrite");
+  const objectStore = transaction.objectStore("todos");
+  objectStore.delete(id);
 }
 
 //localStorageに保存する関数
