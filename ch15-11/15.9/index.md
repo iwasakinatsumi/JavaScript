@@ -35,3 +35,10 @@ ex09/server.js は、ライフゲームの盤面情報を管理し WebSocket で
 > }
 
 出題範囲: 15.11.3
+
+# メモ
+
+ws できないと思ったら！ファイアウォールでブロックされていたらしい
+https://qiita.com/siroitori0413/items/31a570f4e8447f1da985  
+https://develop.miugle.info/websocket/  
+↑ だと問題なさそうに見えるが…

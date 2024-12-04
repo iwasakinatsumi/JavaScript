@@ -35,3 +35,6 @@ console.log(response); // -> "Hello, World"
 # 結果
 
 1.server.js のログに下記が出力されているのは確認できた。
+
+> connected
+> {"id":1733319163241,"body":"World"} wait 3507ms

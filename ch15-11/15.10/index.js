@@ -80,14 +80,13 @@
 // });
 
 //下記サンプル
-const worker = new Worker("worker.js");
+import { Worker } from "worker_threads";
+const worker = new Worker("./15.10/worker.js");
 
-worker.addEventListener(
-  "message",
-  (e) => {
-    console.log("Workerから受け取ったデータは: ", e.data);
-  },
-  false
-);
+// メッセージを受け取るイベントリスナーを設定
+worker.on("message", (data) => {
+  console.log("Workerから受け取ったデータは: ", data);
+});
 
+// ワーカーにメッセージを送信
 worker.postMessage("Hello, world");
