@@ -42,3 +42,5 @@ Fibonacci number: 165580140
 https://docs.oracle.com/en/industries/energy-water/meter-data-management/25011/mdm-user-guides_ja/Topics/F1_07BkgrndProcesses_Optimal_Thread_Count.html
 
 > 経験則から、使用可能なアプリケーション・サーバーの CPU の 100 MHz ごとに 1 スレッドを指定することをお薦めします。
+
+2.6GHz なので、↑ でいうと 2600(MHz)なので 26 くらいがよさそう。

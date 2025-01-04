@@ -12,3 +12,11 @@ memo：
 > Using fs.truncate with a file descriptor is deprecated. Please use fs.ftruncate with a file descriptor instead
 
 が出たので、ftruncate にした。(Node のバージョン？)
+
+> ファイルサイズの変更エラー: [Error: EPERM: operation not permitted, ftruncate] {
+> errno: -4048,
+> code: 'EPERM',
+> syscall: 'ftruncate'
+> }
+
+が出ている…

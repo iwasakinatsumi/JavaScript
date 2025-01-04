@@ -1,19 +1,31 @@
 import crypto from "crypto";
 // ここを埋める
+import { randomBytes } from "crypto";
 
 // 鍵を生成する
 function generateKey() {
   // 32バイトの暗号論的疑似乱数を生成する
   // ここを埋める
+  const randomData = randomBytes(32);
+  //console.log(randomData);
+  return randomData;
 }
 
 // 平文を鍵とAES-256-CBCで暗号化する。次に、暗号文と初期化ベクトル(IV)を、Base64エンコードして返す。
 function encrypt64(text, key) {
   // 16バイトの暗号論的疑似乱数を初期化ベクトル (IV) とする
   // ここを埋める
+  const iv = randomBytes(16);
+  //console.log(iv);
 
   // 暗号化とBase64エンコード
   // ここを埋める
+  // 暗号化用のcipherを作成
+  const cipher = createCipheriv("aes-256-cbc", key, iv);
+
+  // 平文を暗号化（エンコード後にバイナリデータとして暗号化）
+  let encrypted = cipher.update(text, "utf8", "hex");
+  encrypted += cipher.final("hex");
 
   // 暗号文とIVをbase64で返す
   return {
@@ -25,6 +37,7 @@ function encrypt64(text, key) {
 // generateKeyの返り値を、JSON形式でファイルに保存する(非同期)
 async function writeKey(key) {
   // ここを埋める（fs.promisesで鍵を保存）
+  const genKey = generateKey();
 }
 
 // encrypt64の返り値を、JSON形式でファイルに保存する(非同期)
