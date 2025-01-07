@@ -1,6 +1,7 @@
-import crypto from "crypto";
-// ここを埋める
-import { randomBytes } from "crypto";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const fs = require("fs");
+import { randomBytes, createCipheriv, createDecipheriv } from "crypto";
 
 // 鍵を生成する
 function generateKey() {
@@ -29,7 +30,7 @@ function encrypt64(text, key) {
 
   // 暗号文とIVをbase64で返す
   return {
-    value: encryptedBase64,
+    value: Buffer.from(encrypted, "hex").toString("base64"),
     iv: iv.toString("base64"),
   };
 }
@@ -37,26 +38,60 @@ function encrypt64(text, key) {
 // generateKeyの返り値を、JSON形式でファイルに保存する(非同期)
 async function writeKey(key) {
   // ここを埋める（fs.promisesで鍵を保存）
-  const genKey = generateKey();
+  try {
+    const jsonKey = key.toString("base64");
+    await fs.promises.writeFile("key.json", JSON.stringify({ key: jsonKey }));
+  } catch (err) {
+    console.log("エラー", err);
+  }
 }
 
 // encrypt64の返り値を、JSON形式でファイルに保存する(非同期)
 async function writeEncrypt64(data) {
   // ここを埋める（fs.promisesで暗号データを保存）
+  try {
+    await fs.promises.writeFile("encryptedData.json", JSON.stringify(data));
+  } catch (err) {
+    console.log("エラー", err);
+  }
 }
 
 async function readKey() {
   // ここを埋める（return Promise<鍵>）
+  try {
+    const data = await fs.promises.readFile("key.json", "utf-8");
+    const json = JSON.parse(data);
+    const key = Buffer.from(json.key, "base64");
+    return key;
+  } catch (err) {
+    console.log("エラー", err);
+  }
 }
 
 // ファイルから暗号データを読み込む (非同期)
 async function readEncrypt64() {
   // ここを埋める（return Promise<data>）
+  try {
+    const data = await fs.promises.readFile("encryptedData.json", "utf-8");
+    const json = JSON.parse(data);
+    return json;
+  } catch (err) {
+    console.log("エラー", err);
+  }
 }
 
 // 復号して平文を返す
 function decrypt64(data, key) {
   // ここを埋める
+  const iv = Buffer.from(data.iv, "base64");
+  const encryptedText = Buffer.from(data.value, "base64").toString("hex");
+  const decipher = createDecipheriv("aes-256-cbc", key, iv);
+
+  // 暗号文を復号
+  let decrypted = decipher.update(encryptedText, "hex", "utf8");
+  decrypted += decipher.final("utf8");
+
+  return decrypted;
 }
 
 // 指定の平文を暗号化とBase64エンコードし、後に復号する一連の処理
