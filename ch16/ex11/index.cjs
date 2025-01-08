@@ -5,7 +5,7 @@ const server = net.createServer((socket) => {
   socket.on("data", (data) => {
     const request = data.toString();
     const [header, body] = request.split("\r\n\r\n");
-    const [requestLine, ...headers] = header.split("\r\n");
+    const [requestLine] = header.split("\r\n");
     const [method, path] = requestLine.split(" ");
 
     if (method === "GET" && path === "/") {
