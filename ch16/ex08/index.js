@@ -8,3 +8,37 @@
  * -vまたは--verboseオプションで HTTP ログを出力する
  * 出題範囲: 16.1, 16.8
  */
+import { Command } from "commander";
+//const dotenv = require("dotenv");
+
+// .envファイルを読み込む
+//dotenv.config();
+
+// GitHub API の設定
+const GITHUB_API_URL = "https://api.github.com";
+const TOKEN = process.env.GITHUB_TOKEN;
+const OWNER = process.env.GITHUB_OWNER;
+const REPO = process.env.GITHUB_REPO;
+
+//sample
+const program = new Command();
+
+// program
+//   .option("-g, --good-morning", "say good morning")
+//   .option("-h, --hello", "say hello");
+
+program
+  .option("-h, --help", "say good morning") //helpの表示
+  .option("-v, --verbose", "say hello"); //ログの出力
+
+program.parse(process.argv);
+
+const options = program.opts();
+
+if (options.goodMorning) {
+  console.log("Good morning!");
+}
+
+if (options.hello) {
+  console.log("Hello!");
+}
