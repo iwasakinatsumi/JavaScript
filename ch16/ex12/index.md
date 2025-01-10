@@ -15,5 +15,10 @@ Node.js を使う
 Node.js はノンブロッキング I/O モデルを採用  
 ⇒ 並行で処理可能
 
+→ 大量にスレッドやプロセスを作成しないので可能。
+
 参考：  
 https://qiita.com/katu_/items/01c9c35d17a541014d32
+
+https://qiita.com/hiroaki-u/items/f2455d62f8a4017663cb
+https://qiita.com/kamihork/items/296ee689a8d48c2bebcd
