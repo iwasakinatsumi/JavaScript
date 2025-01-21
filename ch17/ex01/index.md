@@ -8,3 +8,9 @@ ESLint、Prettier の各種設定はプロジェクトで採用したスタイ�
 実行確認用のファイルはあくまで例として上記のガイドのいくつかを反映されているのみであるため、設定に関しては実行確認用ファイルがガイドに従う最小設定ではなく、Google JavaScript Style Guide に従うこと。
 
 出題範囲 17.1, 17,2
+
+参考：  
+https://prettier.io/docs/en/install.html  
+https://zenn.dev/cordelia/articles/751c4efb74441a  
+https://www.npmjs.com/package/lint
+https://zenn.dev/popcorn/scraps/6e7002f56a3451
