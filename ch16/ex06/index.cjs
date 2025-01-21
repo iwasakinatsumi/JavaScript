@@ -14,7 +14,7 @@ fs.open(filePath, "a", (err, fd) => {
   const newSize = 2048;
 
   // ファイルサイズを 10 バイトに設定する（拡張）
-  fs.ftruncate(fd, newSize, (err) => {
+  fs.truncate(fd, newSize, (err) => {
     if (err) {
       console.error("ファイルサイズの変更エラー:", err);
     } else {
