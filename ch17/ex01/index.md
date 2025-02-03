@@ -14,3 +14,6 @@ https://prettier.io/docs/en/install.html
 https://zenn.dev/cordelia/articles/751c4efb74441a  
 https://www.npmjs.com/package/lint
 https://zenn.dev/popcorn/scraps/6e7002f56a3451
+
+メモ：
+copyが元のコードなので、動作確認はついていない方を使うこと
