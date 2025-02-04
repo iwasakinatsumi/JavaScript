@@ -1,8 +1,8 @@
-const { Polly } = require("@pollyjs/core");
-const { createIssue, closeIssue, listOpenIssues } = require("./gitMethod");
+import { Polly } from "@pollyjs/core"
+import { createIssue, closeIssue, listOpenIssues } from "./gitMethod"
 
 describe("GitHub Issue CLI tests with Polly.js", () => {
-  let polly;
+  let polly
 
   beforeAll(() => {
     polly = new Polly("GitHub API Mock", {
@@ -13,30 +13,30 @@ describe("GitHub Issue CLI tests with Polly.js", () => {
           recordingsDir: "./recordings", // レコーディングファイルの保存場所
         },
       },
-    });
-  });
+    })
+  })
 
   afterAll(() => {
-    polly.stop();
-  });
+    polly.stop()
+  })
 
   test("createIssue should create an issue and return success", async () => {
     // Polly.js が GitHub API のリクエストを記録し、レスポンスを再生します
-    const response = await createIssue("New Issue", "This is a new issue.");
-    expect(response.success).toBe(true);
-    expect(response.data.number).toBe(1);
-    expect(response.data.title).toBe("New Issue");
-  });
+    const response = await createIssue("New Issue", "This is a new issue.")
+    expect(response.success).toBe(true)
+    expect(response.data.number).toBe(1)
+    expect(response.data.title).toBe("New Issue")
+  })
 
   test("closeIssue should close an issue and return success", async () => {
-    const response = await closeIssue(1);
-    expect(response.success).toBe(true);
-    expect(response.data.state).toBe("closed");
-  });
+    const response = await closeIssue(1)
+    expect(response.success).toBe(true)
+    expect(response.data.state).toBe("closed")
+  })
 
   test("listOpenIssues should list open issues", async () => {
-    const response = await listOpenIssues();
-    expect(response.success).toBe(true);
-    expect(response.data.length).toBeGreaterThan(0);
-  });
-});
+    const response = await listOpenIssues()
+    expect(response.success).toBe(true)
+    expect(response.data.length).toBeGreaterThan(0)
+  })
+})

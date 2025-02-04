@@ -14,6 +14,23 @@ https://prettier.io/docs/en/install.html
 https://zenn.dev/cordelia/articles/751c4efb74441a  
 https://www.npmjs.com/package/lint
 https://zenn.dev/popcorn/scraps/6e7002f56a3451
+https://qiita.com/Shilaca/items/c494e4dc6b536a5231de
 
 メモ：
 copyが元のコードなので、動作確認はついていない方を使うこと
+
+実施手順：
+1.ch17で下記を実行
+
+> npm install --save-dev eslint prettier eslint-config-prettier eslint-plugin-prettier
+
+2.package.jsonに設定追加
+
+> "lint": "eslint . --fix", // ESLintの実行と自動修正
+> "format": "prettier --write .", // Prettierでコードを整形
+> "lint:fix": "npm run lint && npm run format" // 両方のツールを一度に実行
+
+3.eslintrc.jsonと.prettierrcを設定
+
+結果：  
+lintはスペースが入った

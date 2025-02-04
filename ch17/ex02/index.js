@@ -1,5 +1,5 @@
-const yargs = require("yargs");
-const { createIssue, closeIssue, listOpenIssues } = require("./gitMethod");
+import yargs from "yargs"
+import { createIssue, closeIssue, listOpenIssues } from "./gitMethod.js"
 
 // コマンドライン引数の処理
 const argv = yargs
@@ -12,13 +12,13 @@ const argv = yargs
       .positional("body", {
         describe: "The body content of the issue",
         type: "string",
-      });
+      })
   })
   .command("close <issueId>", "Close an issue", (yargs) => {
     yargs.positional("issueId", {
       describe: "The ID of the issue to close",
       type: "number",
-    });
+    })
   })
   .command("list", "List open issues")
   .option("verbose", {
@@ -26,7 +26,7 @@ const argv = yargs
     type: "boolean",
     description: "Enable verbose HTTP logging",
   })
-  .help().argv;
+  .help().argv
 
 // コマンドに応じて処理を実行
 if (argv._.includes("create")) {
@@ -34,32 +34,32 @@ if (argv._.includes("create")) {
     if (response.success) {
       console.log(
         `Issue created: #${response.data.number} - ${response.data.title}`,
-      );
+      )
     } else {
-      console.log(`Failed to create issue: ${response.error}`);
+      console.log(`Failed to create issue: ${response.error}`)
     }
-  });
+  })
 } else if (argv._.includes("close")) {
   closeIssue(argv.issueId, argv.verbose).then((response) => {
     if (response.success) {
-      console.log(`Issue #${argv.issueId} closed.`);
+      console.log(`Issue #${argv.issueId} closed.`)
     } else {
-      console.log(`Failed to close issue #${argv.issueId}: ${response.error}`);
+      console.log(`Failed to close issue #${argv.issueId}: ${response.error}`)
     }
-  });
+  })
 } else if (argv._.includes("list")) {
   listOpenIssues(argv.verbose).then((response) => {
     if (response.success) {
       if (response.data.length === 0) {
-        console.log("No open issues.");
+        console.log("No open issues.")
       } else {
-        console.log("Open Issues:");
+        console.log("Open Issues:")
         response.data.forEach((issue) => {
-          console.log(`#${issue.number} - ${issue.title}`);
-        });
+          console.log(`#${issue.number} - ${issue.title}`)
+        })
       }
     } else {
-      console.log(`Failed to fetch open issues: ${response.error}`);
+      console.log(`Failed to fetch open issues: ${response.error}`)
     }
-  });
+  })
 }
