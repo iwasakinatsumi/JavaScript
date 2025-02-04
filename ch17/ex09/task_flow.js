@@ -1,6 +1,6 @@
 /**
  * ex09/task.jsのコードをFlowを使ったコードにそれぞれ書き換えなさい。
- * また、ex09/caller.ts(TypeScript)、ex09/caller.js(Flow)からの呼び出しがそれぞれ動作することを確認しなさい。
+ * また、ex09/caller.js(Flow)からの呼び出しがそれぞれ動作することを確認しなさい。
  * ただし、関数内部の実装は変更しないこと。また、isUserObjectの引数以外でanyを使わないこと。
  * 出題範囲 17.8
  */
@@ -10,6 +10,23 @@
 //  - Task: { title: string, completed: boolean, user: User }
 //  - Priority: "low"|"middle"|"high"のいずれかの値をとる
 //  - PriorityTask: Taskかつ{ priority: Priority }を持つ型
+type User = {
+  id: number,
+  name: string
+};
+
+type Task = {
+  title: string,
+  completed: boolean,
+  user: User
+};
+
+type Priority = "low" | "middle" | "high";
+
+type PriorityTask = Task & {
+  priority: Priority
+};
+
 
 // Userオブジェクトであることを判定する
 function isUserObject(obj) {
