@@ -1,8 +1,10 @@
 function test() {
   {
-    const number1 = 1;
+    const number = 1;
+    console.log(number);
   }
   {
-    const number2 = 2;
+    const number = 2;
+    console.log(number);
   }
 }
