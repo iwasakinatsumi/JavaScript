@@ -3,6 +3,7 @@
  * また、ex09/caller.js(Flow)からの呼び出しがそれぞれ動作することを確認しなさい。
  * ただし、関数内部の実装は変更しないこと。また、isUserObjectの引数以外でanyを使わないこと。
  * 出題範囲 17.8
+ * https://qiita.com/kabueye/items/81968c75bc62d8b001f5
  */
 
 // 以下の型を定義すること

@@ -9,9 +9,10 @@
 
 # どのような処理が行われたか
 
-distにbundle.jsとindex.htmlが作成された  
-bundle.jsの中身を確認すると難読化が実施されていて、横1行になっている  
-index.htmlも難読化(？)が行われている
+- distにbundle.jsとindex.htmlが作成された
+- bundle.jsの中身を確認すると難読化が実施されていて、横1行になっている
+- 3ファイルが1つにまとまった
+- index.htmlも難読化が行われている
 
 ⇒バンドル：束にする、の意味
 
