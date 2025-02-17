@@ -3,5 +3,6 @@
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error"
-  }
+  },
+  "ignorePatterns": ["ex01/sample/format_sample.js"]
 }
