@@ -1,0 +1,14 @@
+#map {
+  height: 500px;
+  width: 100%;
+}
+#clock {
+  font-size: 2em;
+  text-align: center;
+  margin: 20px;
+}
+#info {
+  text-align: center;
+  font-size: 1.2em;
+  margin-top: 20px;
+}
