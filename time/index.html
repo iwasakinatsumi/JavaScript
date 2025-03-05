@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Degital Clock</title>
+    <!-- 外部CSSファイルをリンク -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- デジタル時計表示 -->
+    <div class="clock" id="clock">
+      <div id="time"></div>
+      <div id="am-pm" class="am-pm"></div>
+    </div>
+
+    <!-- 地図表示エリア -->
+    <div id="map"></div>
+
+    <!-- クリックした場所の情報表示エリア -->
+    <div class="location-info" id="location-info">
+      クリックした場所の情報と時刻がここに表示されます。
+    </div>
+
+    <!-- Leaflet.js の CDN -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Day.jsのCDN -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/dayjs.min.js"></script>
+
+    <!-- Day.js タイムゾーンプラグイン -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/plugin/utc.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.7/plugin/timezone.js"></script>
+
+    <!-- 外部JavaScriptファイルをリンク -->
+    <script src="script.js"></script>
+  </body>
+</html>
