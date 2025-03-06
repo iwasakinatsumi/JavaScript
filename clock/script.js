@@ -2,8 +2,11 @@
 dayjs.extend(window.dayjs_plugin_utc); // UTC プラグインを拡張
 dayjs.extend(window.dayjs_plugin_timezone); // タイムゾーンプラグインを拡張
 
-// Google Maps APIのキーをここに入力してください
-const googleMapsApiKey = "YOUR_GOOGLE_MAPS_API_KEY";
+// Google Maps APIのキーをここに入力
+const googleMapsApiKey = "Your google Maps Api Key";
+
+let locationTimeInterval = null; // 地点の時刻を更新するインターバルID
+let currentTimeZone = ""; // 現在のタイムゾーン
 
 // 現在の時刻を表示 (日本標準時)
 function updateClock() {
@@ -42,10 +45,13 @@ function getTimeZone(lat, lon) {
     .then((data) => {
       if (data.status === "OK") {
         const timezone = data.timeZoneId; // 取得したタイムゾーンID
-        const locationTime = dayjs().tz(timezone).format("YYYY-MM-DD HH:mm:ss");
-        document.getElementById(
-          "location"
-        ).textContent = `地点: 緯度: ${lat}, 経度: ${lon} / 現在の時刻: ${locationTime} (${timezone})`;
+        currentTimeZone = timezone; // 現在のタイムゾーンを保存
+        updateLocationTime(); // 地点の時刻を初期表示
+        // 1秒ごとに地点の時刻を更新するインターバルを設定
+        if (locationTimeInterval) {
+          clearInterval(locationTimeInterval); // 前のインターバルをクリア
+        }
+        locationTimeInterval = setInterval(updateLocationTime, 1000); // 地点の時刻を更新
       } else {
         document.getElementById("location").textContent =
           "タイムゾーンの取得に失敗しました";
@@ -56,6 +62,18 @@ function getTimeZone(lat, lon) {
       document.getElementById("location").textContent =
         "タイムゾーンの取得に失敗しました";
     });
+}
+
+// 地点の時刻を更新する関数
+function updateLocationTime() {
+  if (currentTimeZone) {
+    const locationTime = dayjs()
+      .tz(currentTimeZone)
+      .format("YYYY-MM-DD HH:mm:ss");
+    document.getElementById(
+      "location"
+    ).textContent = `地点の現在の時刻: ${locationTime} (${currentTimeZone})`;
+  }
 }
 
 // ズームコントロールの表示
